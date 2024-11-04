@@ -20,7 +20,7 @@ export const InfoLogin = styled.div`
   display: flex;
   flex-direction: row;
   border-radius: 18px;
-  background-color: ${({ theme }) => theme.color.background.surface};
+  background-color: #eee;
 `
 
 export const Box = styled.div`
@@ -51,5 +51,5 @@ export const Order = styled.div`
   align-items: center;
   border-radius: 50%;
   justify-content: center;
-  background-color: ${({ theme }) => theme.color.background['neutral-subtle']};
+  background-color: #eee;
 `

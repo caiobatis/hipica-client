@@ -13,8 +13,6 @@ export const LinksCard = styled.div`
   padding: 1.5rem;
   margin-top: 2rem;
   flex-direction: column;
-  border-radius: ${({ theme }) => theme['corner-radius'].container};
-  background-color: ${({ theme }) => theme.color.background['surface']};
 `
 
 export const ContentCard = styled.div`
@@ -26,7 +24,6 @@ export const ContentCard = styled.div`
 
 export const Anchor = styled.a`
   width: 322px;
-  color: ${({ theme }) => theme.color.content['brand']};
   display: flex;
   flex-direction: row;
   justify-content: space-between;

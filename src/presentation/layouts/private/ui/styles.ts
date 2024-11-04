@@ -25,8 +25,8 @@ export const StyledSidebar = styled(Sidebar)`
 `
 
 export const LayoutContainer = styled.div`
-  padding-left: ${tokens.sizes.sidebarWidth};
-  padding-top: ${tokens.sizes.headerHeight};
+  /* padding-left: ${tokens.sizes.sidebarWidth};
+  padding-top: ${tokens.sizes.headerHeight}; */
 `
 
 export const Main = styled.div`
@@ -35,6 +35,6 @@ export const Main = styled.div`
 
 export const BodyStyle = createGlobalStyle`
   body {
-    background-color: ${({ theme }) => theme.color.background['surface-hover']}
+    background-color: #eee;
   }
 `

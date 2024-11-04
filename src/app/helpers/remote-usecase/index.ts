@@ -4,7 +4,7 @@ export abstract class RemoteUseCase<
   Response extends object | void,
   Parameters extends object | undefined = undefined,
 > {
-  public constructor(protected readonly url: string) {}
+  public constructor(protected readonly url?: string) {}
 
   public abstract run(parameters: Parameters): unknown
 

@@ -1,5 +1,4 @@
 import { QueryClientProvider } from '@tanstack/react-query'
-import { Fragment } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 import Providers from '~/infra/providers'
@@ -25,14 +24,6 @@ vi.mock('~/infra/providers/toast', () => ({
   ToastProvider: vi.fn(),
 }))
 
-vi.mock('~/infra/providers/theme', () => {
-  return {
-    StyledThemeProvider: vi.fn(({ children }) => (
-      <Fragment>{children}</Fragment>
-    )),
-  }
-})
-
 vi.mock('@tanstack/react-query', () => {
   return {
     QueryClient: vi.fn(),
@@ -48,12 +39,6 @@ vi.mock('react-router-dom', () => {
 
 describe('providers', () => {
   let component: RenderResult
-
-  it('should render google repactcha provider', () => {
-    component = render(<Providers />)
-
-    expect(GoogleReCaptchaProvider).toHaveBeenCalled()
-  })
 
   it('should render query client provider', () => {
     component = render(<Providers />)
@@ -77,12 +62,6 @@ describe('providers', () => {
     component = render(<Providers />)
 
     expect(RouterProvider).toHaveBeenCalled()
-  })
-
-  it('should render window provider', () => {
-    component = render(<Providers />)
-
-    expect(WindowRecaptcha).toHaveBeenCalled()
   })
 
   it('should render router provider with routes', () => {

@@ -13,8 +13,9 @@ export const Component: React.FC<PageProps> = () => {
     isError: isStockError,
     refetch: refetchStock,
   } = useListProducts({
-    status: 'GOOD',
+    colection: 'saturdays',
   })
+  console.log(stockResponse, isLoadingStock)
 
   // const {
   //   data: resalesResponse,
@@ -43,11 +44,16 @@ export const Component: React.FC<PageProps> = () => {
   //   refetchResales()
   // }, [refetchResales])
 
-  const stockState = useMemo<States>(() => {
-    if (isLoadingStock) return States.loading
-    if (isStockError) return States.genericError
-    return States.default
-  }, [isLoadingStock, isStockError])
+  const stockState = useMemo<States>(
+    () => {
+      // if (isLoadingStock) return States.loading
+      // if (isStockError) return States.genericError
+      return States.default
+    },
+    [
+      // isLoadingStock, isStockError
+    ],
+  )
 
   // const resaleState = useMemo<States>(() => {
   //   if (isLoadingResales) return States.loading

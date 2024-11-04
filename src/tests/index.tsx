@@ -8,7 +8,6 @@ import {
   type RenderOptions,
   type RenderResult,
 } from '@testing-library/react'
-import { StyledThemeProvider } from '~/infra/providers/theme'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +22,7 @@ const queryClient = new QueryClient({
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>
-    <StyledThemeProvider>{children}</StyledThemeProvider>
+    <div>{children}</div>
   </QueryClientProvider>
 )
 

@@ -1,14 +1,18 @@
+import type { Timestamp } from 'firebase/firestore'
+
 export interface Product {
   id: string
-  model: string
-  status: string
-  partnerName: string
-  productName: string
-  displayName: string
-  customerId: string | null
-  orderNumber: string | null
-  serialNumber: string
-  imageUrl: string
-  updatedAt: string
-  createdAt: string
+  date: Timestamp
+  description: string
+  title: string
+  schedule: {
+    school: Array<{
+      description: string
+      end_time: string
+      note: string
+      responsible: string
+      start_time: string
+      title: string
+    }>
+  }
 }

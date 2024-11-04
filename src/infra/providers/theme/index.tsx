@@ -1,24 +1,47 @@
-import { StyleSheetManager, ThemeProvider } from 'styled-components'
-import { GlobalStyles } from './global'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import {
+  inputsCustomizations,
+  navigationCustomizations,
+  surfacesCustomizations,
+} from './custom'
+import { colorSchemes, shadows, shape, typography } from './themePrimitives'
 
-type Props = {
-  children?: React.ReactNode
+interface AppThemeProps {
+  children: React.ReactNode
 }
 
-const theme = {
-  color: {
-    background: {
-      'surface-hover': '',
+export default function AppTheme({ children }: AppThemeProps) {
+  const theme = createTheme({
+    cssVariables: {
+      colorSchemeSelector: 'data-mui-color-scheme',
+      cssVarPrefix: 'template',
     },
-  },
+    colorSchemes,
+    typography,
+    shadows,
+    shape,
+    components: {
+      ...inputsCustomizations,
+      // ...dataDisplayCustomizations,
+      // ...feedbackCustomizations,
+      ...navigationCustomizations,
+      ...surfacesCustomizations,
+    },
+  })
+
+  return (
+    <ThemeProvider theme={theme} disableTransitionOnChange>
+      {children}
+    </ThemeProvider>
+  )
 }
 
-export const StyledThemeProvider: React.FC<Props> = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyles />
+// export const StyledThemeProvider: React.FC<Props> = ({ children }) => (
+//   <ThemeProvider theme={theme}>
+//     <GlobalStyles />
 
-    <StyleSheetManager shouldForwardProp={() => true}>
-      {children}
-    </StyleSheetManager>
-  </ThemeProvider>
-)
+//     <StyleSheetManager shouldForwardProp={() => true}>
+//       {children}
+//     </StyleSheetManager>
+//   </ThemeProvider>
+// )

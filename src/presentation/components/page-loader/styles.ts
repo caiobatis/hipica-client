@@ -17,6 +17,5 @@ export const Loading = styled.div`
   transform: translate(-50%, -50%);
   align-items: center;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.color.background.surface};
   justify-content: center;
 `
