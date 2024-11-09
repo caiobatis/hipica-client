@@ -1,12 +1,11 @@
+import { Box, Container } from '@mui/material'
 import * as React from 'react'
 import { Outlet } from 'react-router-dom'
+import { Header } from '~/presentation/components/header'
 // import { MenuItem } from '~/presentation/components/menu-item'
 // import type { SidebarBarMenu } from '~/presentation/components/sidebar/types'
 import type { PrivateContainerProps } from '~/presentation/layouts/private/types'
-import {
-  BodyStyle,
-  LayoutContainer,
-} from '~/presentation/layouts/private/ui/styles'
+import { BodyStyle } from '~/presentation/layouts/private/ui/styles'
 // import { routes } from '~/routes'
 
 // const menuItems: Array<SidebarBarMenu> = [
@@ -33,34 +32,22 @@ import {
 // ]
 
 export const PrivateContainer: React.FC<PrivateContainerProps> = () => {
+  const email = localStorage.getItem('email')
   return (
-    <LayoutContainer role="main">
+    <div>
       <BodyStyle />
 
-      {/* <StyledSidebar
-        menus={menuItems}
-        headerComponent={
-          <ButtonMainAction
-            {...testProps('button-go-to-transfer-product')}
-            label="Repassar produto"
-            onClick={onGoToTransferProduct}
-          />
-        }
-        footerComponent={
-          <MenuItem
-            {...testProps('button-sign-out')}
-            leadingIcon="logout"
-            label="Sair"
-            onClick={onSignOut}
-          />
-        }
-      /> */}
+      <Header email={email ?? ''} />
 
-      <div>
-        <React.Suspense fallback={<p>carregando</p>}>
-          <Outlet />
-        </React.Suspense>
-      </div>
-    </LayoutContainer>
+      <Container maxWidth="md">
+        <Box padding={2}>
+          <div>
+            <React.Suspense fallback={<p>carregando</p>}>
+              <Outlet />
+            </React.Suspense>
+          </div>
+        </Box>
+      </Container>
+    </div>
   )
 }

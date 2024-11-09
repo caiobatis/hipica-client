@@ -35,6 +35,6 @@ export const Main = styled.div`
 
 export const BodyStyle = createGlobalStyle`
   body {
-    background-color: #eee;
+    background-color: #f5f5f5;
   }
 `

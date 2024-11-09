@@ -1,11 +1,11 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ptBR } from '@mui/x-date-pickers/locales';
 import {
   inputsCustomizations,
   navigationCustomizations,
   surfacesCustomizations,
-} from './custom'
-import { colorSchemes, shadows, shape, typography } from './themePrimitives'
-
+} from './custom';
+import { colorSchemes, shadows, shape, typography } from './themePrimitives';
 interface AppThemeProps {
   children: React.ReactNode
 }
@@ -27,7 +27,7 @@ export default function AppTheme({ children }: AppThemeProps) {
       ...navigationCustomizations,
       ...surfacesCustomizations,
     },
-  })
+  }, ptBR)
 
   return (
     <ThemeProvider theme={theme} disableTransitionOnChange>

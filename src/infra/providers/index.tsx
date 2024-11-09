@@ -1,5 +1,8 @@
 import { CssBaseline } from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
+import { ptBR } from '@mui/x-date-pickers/locales'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type React from 'react'
 import { RouterProvider } from 'react-router-dom'
@@ -17,13 +20,20 @@ function Providers(): React.ReactElement {
     <QueryClientProvider client={queryClient}>
       <StyledEngineProvider injectFirst>
         <AppTheme>
-          <CssBaseline />
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+            localeText={
+              ptBR.components.MuiLocalizationProvider.defaultProps.localeText
+            }
+          >
+            <CssBaseline />
 
-          <RouterProvider router={router} />
+            <RouterProvider router={router} />
 
-          <ModalProvider />
+            <ModalProvider />
 
-          <ToastProvider />
+            <ToastProvider />
+          </LocalizationProvider>
         </AppTheme>
       </StyledEngineProvider>
     </QueryClientProvider>

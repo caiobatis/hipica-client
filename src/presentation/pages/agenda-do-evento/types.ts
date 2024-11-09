@@ -1,3 +1,5 @@
+import type { ListProducts } from '~/domain/usecases'
+
 export interface PageProps {}
 
 export enum States {
@@ -9,4 +11,6 @@ export enum States {
 
 export interface DashboardContainerProps {
   stockState?: States
+  stock?: ListProducts.Response
+  navigateToDetail: (id: string) => void
 }
