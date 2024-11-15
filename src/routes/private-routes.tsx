@@ -21,18 +21,6 @@ export const privateRoutes = [
         path: ':id/responsavel/:id',
         lazy: () => import('~/presentation/pages/responsible'),
       },
-      // {
-      //   path: ':id',
-      //   lazy: () => import('~/presentation/pages/detalhes-do-evento'),
-      // },
-      // {
-      //   path: ':id/agenda/:id',
-      //   lazy: () => import('~/presentation/pages/agenda-do-evento'),
-      // },
     ],
-  },
-  {
-    path: 'links-uteis',
-    lazy: () => import('~/presentation/pages/useful-links'),
   },
 ]

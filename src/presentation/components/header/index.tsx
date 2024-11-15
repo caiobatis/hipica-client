@@ -45,6 +45,7 @@ export function Header({ email }: Props) {
           </Grid2>
         </Container>
       </Box>
+
       <Divider />
     </div>
   )

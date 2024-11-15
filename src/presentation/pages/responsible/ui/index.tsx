@@ -65,7 +65,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           </div>
         </Grid>
 
-        <Grid xs={1}>
+        <Grid xs={1} item>
           <Divider />
         </Grid>
 

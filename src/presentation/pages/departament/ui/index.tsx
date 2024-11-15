@@ -123,7 +123,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           description="Caso seu departamento nao esteja na lista, entre em contato com departamento de gestão."
         />
 
-        <Grid xs={1} mt={4}>
+        <Grid xs={1} mt={4} item>
           <Divider />
         </Grid>
 

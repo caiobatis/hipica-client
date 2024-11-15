@@ -8,18 +8,21 @@ export const Component: React.FC<PageProps> = () => {
   const [email, setEmail] = useState('')
 
   const handleSetAuth = useCallback(() => {
-    localStorage.setItem('email', email)
+    if (email) {
+      localStorage.setItem('email', email)
 
-    setTimeout(() => {
-      navigate('/evento')
-    }, 200)
+      setTimeout(() => {
+        navigate('/departamento')
+      }, 200)
+      return
+    }
   }, [email, navigate])
 
   const localAuth = !!localStorage.getItem('email')
 
   useEffect(() => {
     if (localAuth) {
-      navigate('/evento')
+      navigate('/departamento')
     }
   }, [localAuth, navigate])
 

@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components'
-import { Sidebar } from '~/presentation/components'
 
 const tokens = {
   sizes: {
@@ -11,18 +10,6 @@ const tokens = {
     header: 2,
   },
 }
-
-export const StyledSidebar = styled(Sidebar)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  padding-top: ${tokens.sizes.headerHeight};
-  width: ${tokens.sizes.sidebarWidth};
-  z-index: ${tokens.zIndexes.sidebar};
-`
 
 export const LayoutContainer = styled.div`
   /* padding-left: ${tokens.sizes.sidebarWidth};
