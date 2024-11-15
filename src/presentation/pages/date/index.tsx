@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useListProducts } from '~/infra/hooks'
-import { States, type PageProps } from '~/presentation/pages/evento/types'
-import { DashboardContainer } from '~/presentation/pages/evento/ui'
+import { States, type PageProps } from './types'
+import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ export const Component: React.FC<PageProps> = () => {
 
   const handleNavigateToDetail = useCallback(
     (id: string) => {
-      navigate(`${id}`)
+      navigate(`responsavel/${id}`)
     },
     [navigate],
   )

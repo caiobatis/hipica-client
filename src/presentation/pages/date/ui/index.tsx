@@ -1,16 +1,19 @@
 import {
   Box,
-  Button,
   Card,
+  CardActionArea,
   CardContent,
   Chip,
+  Divider,
   Grid,
   Grid2,
   Typography,
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
-import type { DashboardContainerProps } from '~/presentation/pages/evento/types'
+import { BodyTitle } from '~/presentation/components/BodyTitle'
+import { Headbar } from '~/presentation/components/Headbar'
+import type { DashboardContainerProps } from '../types'
 
 const bull = (
   <Box
@@ -26,107 +29,9 @@ const currentYear = dayjs()
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   navigateToDetail,
 }) => {
-  const items = [
-    {
-      date: { seconds: 1730516400, nanoseconds: 389000000 },
-      title: 'title aqui',
-      description: 'description',
-      schedule: {
-        school: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep1: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep2: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-      },
-    },
-    {
-      date: { seconds: 1730516400, nanoseconds: 389000000 },
-      title: 'title aqui',
-      description: 'description',
-      schedule: {
-        school: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep1: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep2: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-      },
-    },
-  ]
-
   return (
     <>
-      <Grid2
-        container
-        mt={2}
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Grid2>
-          <Typography variant="h4" mb={1}>
-            Ajude a organizar nossos cultos
-          </Typography>
-
-          <Typography variant="body1" mb={1}>
-            Escolha o momento do evento desejado
-          </Typography>
-        </Grid2>
-
-        <Grid2>
-          <Button type="button" variant="outlined" size="large" fullWidth>
-            Voltar
-          </Button>
-        </Grid2>
-      </Grid2>
+      <Headbar />
 
       <Grid
         container
@@ -136,59 +41,185 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
         bgcolor="ActiveBorder"
         p={2}
         borderRadius={1}
-        columns={{ xs: 1, sm: 2, md: 2 }}
+        columns={{ xs: 1, sm: 1, md: 1 }}
       >
-        <Grid xs={1} alignItems="center" justifyContent="space-between">
-          <Grid2>
-            <Typography variant="h6" component="div">
-              sábado {bull} 11 de novembro
-            </Typography>
-          </Grid2>
+        <BodyTitle
+          number={2}
+          title="Selecione o mês e o dia"
+          description="Caso seu departamento nao esteja na lista, entre em contato com departamento de gestão."
+        />
+
+        <Grid my={4} xs={1}>
+          <div>
+            <Box
+              display="inline-flex"
+              alignItems="center"
+              bgcolor="Highlight"
+              color="white"
+              px={2}
+              py={0.5}
+              borderRadius={1}
+            >
+              <Typography variant="body1" fontWeight={600}>
+                Sonoplastia
+              </Typography>
+              {/* {bull}
+              <Typography variant="body1">27/10/2024</Typography> */}
+            </Box>
+          </div>
         </Grid>
 
-        <Grid xs={1} textAlign="right">
-          {/* <Typography variant="body1" component="div" mr={1}>
-            Mês selecionado
-          </Typography> */}
+        <Grid xs={1}>
+          <Divider />
+        </Grid>
 
+        {/* <Grid mt={4} xs={1}>
+          <Typography variant="h6" component="div" color="secondary">
+            Mês
+          </Typography>
+        </Grid> */}
+        <Grid my={2} mt={4} xs={1} sm={0.5}>
           <DatePicker
-            // label="Selecione o mês"
+            label="Selecione o mês"
             openTo="month"
             views={['month']}
             defaultValue={currentYear}
+            sx={{
+              width: '100%',
+            }}
           />
+        </Grid>
+
+        <Grid mt={4} mb={2} xs={1}>
+          <Typography variant="h6" component="div" color="grey">
+            Sábado
+          </Typography>
+        </Grid>
+
+        <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
+          {[1, 2, 3, 4].map((index) => (
+            <Grid xs={1} item key={index}>
+              <CardActionArea onClick={() => navigateToDetail('0')}>
+                <Card variant="outlined">
+                  <CardContent>
+                    <Chip
+                      label="completo"
+                      size="small"
+                      sx={{
+                        fontSize: 11,
+                        height: 20,
+                        mb: 1,
+                        // visibility: 'hidden',
+                        color: 'white',
+                      }}
+                      color="success"
+                    />
+
+                    {/* <Typography variant="body1">dia</Typography> */}
+                    <Typography
+                      variant="h2"
+                      component="div"
+                      color="textPrimary"
+                    >
+                      0{index}/11
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </CardActionArea>
+            </Grid>
+          ))}
+        </Grid>
+
+        <Grid mt={4} mb={2} xs={1}>
+          <Typography variant="h6" component="div" color="grey">
+            Domingo
+          </Typography>
+        </Grid>
+
+        <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
+          {[1, 2, 3, 4].map((index) => (
+            <Grid xs={1} item key={index}>
+              <CardActionArea>
+                <Card variant="outlined">
+                  <CardContent>
+                    <Chip
+                      label="incompleto"
+                      size="small"
+                      sx={{
+                        fontSize: 11,
+                        height: 20,
+                        mb: 1,
+                        // visibility: 'hidden',
+                        // color: 'white',
+                      }}
+                      color="info"
+                    />
+
+                    {/* <Typography variant="body1">dia</Typography> */}
+                    <Typography
+                      variant="h2"
+                      component="div"
+                      color="textPrimary"
+                    >
+                      0{index}/11
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </CardActionArea>
+            </Grid>
+          ))}
+        </Grid>
+
+        <Grid mt={4} mb={2} xs={1}>
+          <Typography variant="h6" component="div" color="grey">
+            Quarta-feira
+          </Typography>
+        </Grid>
+
+        <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
+          {[1, 2, 3, 4].map((index) => (
+            <Grid xs={1} item key={index}>
+              <CardActionArea onClick={() => navigateToDetail('0')}>
+                <Card variant="outlined">
+                  <CardContent>
+                    <Chip
+                      label="pendente"
+                      size="small"
+                      sx={{
+                        fontSize: 11,
+                        height: 20,
+                        mb: 1,
+                        // visibility: 'hidden',
+                        color: 'white',
+                      }}
+                      color="warning"
+                    />
+
+                    <Typography
+                      variant="h2"
+                      component="div"
+                      color="textPrimary"
+                    >
+                      20{bull}11
+                    </Typography>
+
+                    {/* <Typography sx={{ mt: 1 }}>70% preenchido</Typography> */}
+                  </CardContent>
+                </Card>
+              </CardActionArea>
+            </Grid>
+          ))}
         </Grid>
       </Grid>
 
-      <Grid2 mt={4}>
-        {/* <Grid2 textAlign="center">
-          <Typography variant="h4" mb={1}>
-            Contribua com a organicação
-          </Typography>
-
-          <Typography variant="body1" mb={1}>
-            Selecione o mês e dia que deseja alterar
-          </Typography>
-        </Grid2> */}
-      </Grid2>
-      <Grid2 container mt={4} justifyContent="space-between">
-        <Grid2></Grid2>
-
-        <Grid2>
-          {/* <Typography variant="h5" component="div">
-                no{bull}vem{bull}bro
-              </Typography> */}
-        </Grid2>
-      </Grid2>
-
       <div>
-        <Grid2 container mt={2}>
+        {/* <Grid2 container mt={2}>
           <Grid2>
             <Typography variant="button" component="div">
               Sábados
             </Typography>
           </Grid2>
-        </Grid2>
+        </Grid2> */}
 
         <Grid2
           container
@@ -196,7 +227,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           columns={{ xs: 4, sm: 6, md: 8 }}
           mt={2}
         >
-          {items.map((item, index) => {
+          {/* {items.map((item, index) => {
             return (
               <Grid2
                 size={{ xs: 2, sm: 2 }}
@@ -226,7 +257,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                 </Card>
               </Grid2>
             )
-          })}
+          })} */}
 
           {/* <Grid2 size={{ xs: 2, sm: 2 }}>
               <Card>

@@ -7,20 +7,28 @@ export const privateRoutes = [
     lazy: () => import('~/presentation/pages/auth'),
   },
   {
-    path: 'evento',
+    path: 'departamento',
     children: [
       {
         path: '',
-        lazy: () => import('~/presentation/pages/evento'),
+        lazy: () => import('~/presentation/pages/departament'),
       },
       {
         path: ':id',
-        lazy: () => import('~/presentation/pages/detalhes-do-evento'),
+        lazy: () => import('~/presentation/pages/date'),
       },
       {
-        path: ':id/agenda/:id',
-        lazy: () => import('~/presentation/pages/agenda-do-evento'),
+        path: ':id/responsavel/:id',
+        lazy: () => import('~/presentation/pages/responsible'),
       },
+      // {
+      //   path: ':id',
+      //   lazy: () => import('~/presentation/pages/detalhes-do-evento'),
+      // },
+      // {
+      //   path: ':id/agenda/:id',
+      //   lazy: () => import('~/presentation/pages/agenda-do-evento'),
+      // },
     ],
   },
   {

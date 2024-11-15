@@ -1,12 +1,5 @@
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
-import {
-  Box,
-  Chip,
-  Divider,
-  Grid2,
-  TextField,
-  Typography
-} from '@mui/material'
+import { Box, Chip, Divider, Grid2, TextField, Typography } from '@mui/material'
 import type { DashboardContainerProps } from '~/presentation/pages/agenda-do-evento/types'
 
 const bull = (
