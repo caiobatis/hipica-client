@@ -9,6 +9,7 @@ export enum States {
 
 export interface DashboardContainerProps {
   email: string
+  error: string
   setEmail: (email: string) => void
   setAuth: () => void
 }

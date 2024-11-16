@@ -15,7 +15,7 @@ export function Header({ email }: Props) {
   return (
     <div>
       <Box sx={{ bgcolor: 'white' }}>
-        <Container sx={{ p: 4, bgcolor: 'white' }}>
+        <Container sx={{ px: 4, py: 2, bgcolor: 'white' }}>
           <Grid2 container justifyContent="flex-start" alignItems="flex-start">
             <Grid2 mr={2}>
               <Avatar

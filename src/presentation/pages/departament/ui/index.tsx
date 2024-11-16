@@ -1,111 +1,23 @@
 import {
-  Box,
   Card,
   CardActionArea,
+  Chip,
   Divider,
   Grid,
   Grid2,
   Typography,
 } from '@mui/material'
-import dayjs from 'dayjs'
 import { BodyTitle } from '~/presentation/components/BodyTitle'
 import { Headbar } from '~/presentation/components/Headbar'
 import type { DashboardContainerProps } from '../types'
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-)
-
-const currentYear = dayjs()
-
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   navigateToDetail,
+  departaments,
 }) => {
-  const items = [
-    {
-      date: { seconds: 1730516400, nanoseconds: 389000000 },
-      title: 'title aqui',
-      description: 'description',
-      schedule: {
-        school: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep1: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep2: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-      },
-    },
-    {
-      date: { seconds: 1730516400, nanoseconds: 389000000 },
-      title: 'title aqui',
-      description: 'description',
-      schedule: {
-        school: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep1: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-        worsheep2: [
-          {
-            description: '',
-            endTime: '10/10/2024',
-            startTime: '10/10/2024',
-            note: 'uma nota aqui',
-            responsible: 'Joao da Silva',
-            title: 'um titulo',
-          },
-        ],
-      },
-    },
-  ]
-
   return (
     <>
-      <Headbar />
+      <Headbar hasBackButton={false} />
 
       <Grid
         container
@@ -128,16 +40,35 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
         </Grid>
 
         <Grid mt={2} container columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
-          {[1, 2, 3, 4, 5, 6].map((index) => (
-            <Grid xs={1} item key={index}>
-              <CardActionArea onClick={() => navigateToDetail('1')}>
+          {departaments?.map((departament) => (
+            <Grid xs={1} item key={departament.id}>
+              <CardActionArea
+                onClick={() => navigateToDetail(departament.id.toString())}
+              >
                 <Card variant="outlined">
                   <Grid>
-                    <Typography variant="h4" component="div" color="secondary">
-                      Sonopastia
+                    <Chip
+                      label={departament.departament}
+                      sx={{
+                        mb: 1,
+                        height: 20,
+                        fontSize: 12,
+                        color: 'white',
+                        bgcolor: 'Highlight',
+                      }}
+                    />
+
+                    <Typography
+                      variant="h5"
+                      component="div"
+                      color="textPrimary"
+                    >
+                      {departament.label}
                     </Typography>
 
-                    <Typography sx={{ mt: 1 }}>Matheus Machado</Typography>
+                    <Typography sx={{ mt: 1 }}>
+                      {departament.director}
+                    </Typography>
                   </Grid>
                 </Card>
               </CardActionArea>
@@ -147,14 +78,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
       </Grid>
 
       <div>
-        {/* <Grid2 container mt={2}>
-          <Grid2>
-            <Typography variant="button" component="div">
-              Sábados
-            </Typography>
-          </Grid2>
-        </Grid2> */}
-
         <Grid2
           container
           spacing={{ xs: 2, md: 2 }}

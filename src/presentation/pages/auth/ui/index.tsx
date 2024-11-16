@@ -3,6 +3,7 @@ import type { DashboardContainerProps } from '~/presentation/pages/auth/types'
 
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   email,
+  error,
   setAuth,
   setEmail,
 }) => {
@@ -30,6 +31,8 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               autoComplete="off"
+              error={!!error}
+              helperText={error}
             />
           </Box>
 

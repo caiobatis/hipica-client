@@ -1,19 +1,29 @@
-import { useCallback, useMemo } from 'react'
+import dayjs, { type Dayjs } from 'dayjs'
+import { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useListProducts } from '~/infra/hooks'
+import { useDepartament } from '~/infra/hooks'
+import { getDaysByMonthAndYear } from '~/infra/utils/days'
 import { States, type PageProps } from './types'
 import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
   const navigate = useNavigate()
 
-  const {
-    data: stockResponse,
-    isLoading: isLoadingStock,
-    isError: isStockError,
-    refetch: refetchStock,
-  } = useListProducts({
-    colection: 'saturdays',
+  const currentDate = dayjs(localStorage.getItem('date_')) || dayjs()
+
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(currentDate)
+
+  const handleSelectDate = useCallback((date: Dayjs | null) => {
+    if (date) {
+      localStorage.setItem('date_', date.toString())
+
+      setSelectedDate(date)
+    }
+  }, [])
+
+  const { data: departament } = useDepartament({
+    colection: 'departaments',
+    id: '0',
   })
 
   const handleNavigateToDetail = useCallback(
@@ -23,21 +33,22 @@ export const Component: React.FC<PageProps> = () => {
     [navigate],
   )
 
-  const stockState = useMemo<States>(
-    () => {
-      // if (isLoadingStock) return States.loading
-      // if (isStockError) return States.genericError
-      return States.default
-    },
-    [
-      // isLoadingStock, isStockError
-    ],
-  )
+  const stockState = useMemo<States>(() => {
+    return States.default
+  }, [])
+
+  const daysByMonth = useMemo(() => {
+    return getDaysByMonthAndYear(2024, selectedDate!.month())
+  }, [selectedDate])
 
   return (
     <DashboardContainer
       stockState={stockState}
-      stock={stockResponse}
+      stock={[]}
+      departament={departament}
+      selectedDate={selectedDate}
+      setSelectedDate={handleSelectDate}
+      daysByMonth={daysByMonth}
       navigateToDetail={handleNavigateToDetail}
     />
   )

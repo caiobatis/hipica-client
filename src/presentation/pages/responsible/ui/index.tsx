@@ -24,6 +24,10 @@ const currentYear = dayjs()
 
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   navigateToDetail,
+  updateScale,
+  departament,
+  form,
+  setForm,
 }) => {
   return (
     <>
@@ -45,19 +49,19 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           description="Caso seu departamento nao esteja na lista, entre em contato com departamento de gestão."
         />
 
-        <Grid my={4} xs={1}>
+        <Grid my={4} xs={1} item>
           <div>
             <Box
-              display="inline-flex"
-              alignItems="center"
-              bgcolor="Highlight"
-              color="white"
               px={2}
               py={0.5}
               borderRadius={1}
+              display="inline-flex"
+              bgcolor="Highlight"
+              alignItems="center"
+              color="white"
             >
               <Typography variant="body1" fontWeight={600}>
-                Sonoplastia
+                {departament?.label} {bull} {departament?.departament}
               </Typography>
               {bull}
               <Typography variant="body1">27/10/2024</Typography>
@@ -83,8 +87,8 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                 id="outlined-required"
                 label="Responsável"
                 placeholder="Fulano Silva"
-                // value={email}
-                // onChange={(event) => setEmail(event.target.value)}
+                value={form.event1}
+                onChange={(event) => setForm('event1', event.target.value)}
                 autoComplete="off"
               />
             </Box>
@@ -102,8 +106,8 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                 id="outlined-required"
                 label="Responsável"
                 placeholder="Fulano Silva"
-                // value={email}
-                // onChange={(event) => setEmail(event.target.value)}
+                value={form.event2}
+                onChange={(event) => setForm('event2', event.target.value)}
                 autoComplete="off"
               />
             </Box>
@@ -121,8 +125,8 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                 id="outlined-required"
                 label="Responsável"
                 placeholder="Fulano Silva"
-                // value={email}
-                // onChange={(event) => setEmail(event.target.value)}
+                value={form.es}
+                onChange={(event) => setForm('es', event.target.value)}
                 autoComplete="off"
               />
             </Box>
@@ -135,34 +139,11 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
             variant="contained"
             size="large"
             fullWidth
-          // onClick={setAuth}
+            onClick={updateScale}
           >
             Salvar
           </Button>
         </Grid>
-
-        {/* <Grid2 container columns={{ xs: 1, sm: 2, md: 3 }} mt={2}>
-          <Grid2>
-            <Typography
-              variant="overline"
-              fontWeight={500}
-              color="textSecondary"
-            >
-              Culto 1
-            </Typography>
-            <Box mt={1}>
-              <TextField
-                required
-                id="outlined-required"
-                label="E-mail"
-                placeholder="email@aqui.com.br"
-                // value={email}
-                // onChange={(event) => setEmail(event.target.value)}
-                autoComplete="off"
-              />
-            </Box>
-          </Grid2>
-        </Grid2> */}
       </Grid>
     </>
   )

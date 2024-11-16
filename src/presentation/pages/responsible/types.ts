@@ -1,4 +1,4 @@
-import type { ListProducts } from '~/domain/usecases'
+import type { ProductDTO } from '~/infra/api/dtos'
 
 export interface PageProps {}
 
@@ -11,6 +11,13 @@ export enum States {
 
 export interface DashboardContainerProps {
   stockState?: States
-  stock?: ListProducts.Response
+  departament: ProductDTO | undefined
   navigateToDetail: (id: string) => void
+  updateScale: () => void
+  setForm: (id: string, value: string) => void
+  form: {
+    event1: string
+    event2: string
+    es: string
+  }
 }

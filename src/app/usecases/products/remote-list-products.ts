@@ -2,9 +2,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
-import { collection, getDocs, getFirestore } from 'firebase/firestore/lite'
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+} from 'firebase/firestore/lite'
 import { RemoteUseCase } from '~/app/helpers/remote-usecase'
-import { ListProducts } from '~/domain/usecases/products'
+import { Departament, ListProducts } from '~/domain/usecases/products'
 import { firebaseConfig } from '~/firebase/config'
 import { mapProductDTO } from '~/infra/api/mappers/map-product'
 
@@ -66,5 +72,41 @@ export class RemoteListProducts extends RemoteUseCase<
     response: ListProducts.ResponseDTO,
   ): ListProducts.Response {
     return response.map((item) => mapProductDTO(item))
+  }
+}
+
+export class RemoteDepartament extends RemoteUseCase<
+  Departament.Response,
+  Departament.Parameters
+> {
+  public run(parameters: Departament.Parameters) {
+    return useQuery(
+      [Departament.keys.DEPARTAMENT, parameters],
+      () => this.service(parameters),
+      {
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+        refetchOnWindowFocus: false,
+        // enabled: parameters.enabled,
+      },
+    )
+  }
+
+  protected async service(parameters: Departament.Parameters) {
+    const db = getFirestore(firebase)
+
+    const dbRef = doc(db, `${parameters.colection}/${parameters.id}`)
+
+    const response = await getDoc(dbRef)
+
+    return RemoteDepartament.mapperResponse(
+      response?.data() as Departament.ResponseDTO,
+    )
+  }
+
+  public static mapperResponse(
+    response: Departament.ResponseDTO,
+  ): Departament.Response {
+    return mapProductDTO(response)
   }
 }

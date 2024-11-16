@@ -1,19 +1,20 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useListProducts } from '~/infra/hooks'
+import { useDepartament } from '~/infra/hooks'
 import { States, type PageProps } from './types'
 import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
+  const [form, setForm] = useState({
+    event1: '',
+    event2: '',
+    es: '',
+  })
   const navigate = useNavigate()
 
-  const {
-    data: stockResponse,
-    isLoading: isLoadingStock,
-    isError: isStockError,
-    refetch: refetchStock,
-  } = useListProducts({
-    colection: 'saturdays',
+  const { data: departament } = useDepartament({
+    colection: 'departaments',
+    id: '0',
   })
 
   const handleNavigateToDetail = useCallback(
@@ -23,22 +24,26 @@ export const Component: React.FC<PageProps> = () => {
     [navigate],
   )
 
-  const stockState = useMemo<States>(
-    () => {
-      // if (isLoadingStock) return States.loading
-      // if (isStockError) return States.genericError
-      return States.default
-    },
-    [
-      // isLoadingStock, isStockError
-    ],
-  )
+  const handleSetForm = useCallback((field: string, value: string) => {
+    // setForm()
+  }, [])
+
+  const handleUpdateScale = useCallback(() => {
+    // console.log(field, value)
+  }, [form])
+
+  const stockState = useMemo<States>(() => {
+    return States.default
+  }, [])
 
   return (
     <DashboardContainer
       stockState={stockState}
-      stock={stockResponse}
+      departament={departament}
+      form={form}
+      setForm={handleSetForm}
       navigateToDetail={handleNavigateToDetail}
+      updateScale={handleUpdateScale}
     />
   )
 }

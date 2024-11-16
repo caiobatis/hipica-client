@@ -10,7 +10,6 @@ import {
   Typography,
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import dayjs from 'dayjs'
 import { BodyTitle } from '~/presentation/components/BodyTitle'
 import { Headbar } from '~/presentation/components/Headbar'
 import type { DashboardContainerProps } from '../types'
@@ -24,11 +23,16 @@ const bull = (
   </Box>
 )
 
-const currentYear = dayjs()
-
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
+  departament,
+  daysByMonth,
+  selectedDate,
+  setSelectedDate,
   navigateToDetail,
 }) => {
+  const month = selectedDate!.month() + 1
+  const year = selectedDate!.year()
+
   return (
     <>
       <Headbar />
@@ -49,7 +53,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           description="Caso seu departamento nao esteja na lista, entre em contato com departamento de gestão."
         />
 
-        <Grid my={4} xs={1}>
+        <Grid my={4} xs={1} item>
           <div>
             <Box
               display="inline-flex"
@@ -61,10 +65,8 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
               borderRadius={1}
             >
               <Typography variant="body1" fontWeight={600}>
-                Sonoplastia
+                {departament?.label} {bull} {departament?.departament}
               </Typography>
-              {/* {bull}
-              <Typography variant="body1">27/10/2024</Typography> */}
             </Box>
           </div>
         </Grid>
@@ -73,33 +75,32 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           <Divider />
         </Grid>
 
-        {/* <Grid mt={4} xs={1}>
-          <Typography variant="h6" component="div" color="secondary">
-            Mês
-          </Typography>
-        </Grid> */}
-        <Grid my={2} mt={4} xs={1} sm={0.5}>
+        <Grid my={2} mt={4} xs={1} sm={0.5} item>
           <DatePicker
             label="Selecione o mês"
             openTo="month"
             views={['month']}
-            defaultValue={currentYear}
+            value={selectedDate}
+            onChange={setSelectedDate}
+            // defaultValue={new dayjs}
             sx={{
               width: '100%',
             }}
           />
         </Grid>
 
-        <Grid mt={4} mb={2} xs={1}>
+        <Grid mt={4} mb={2} xs={1} item>
           <Typography variant="h6" component="div" color="grey">
             Sábado
           </Typography>
         </Grid>
 
         <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
-          {[1, 2, 3, 4].map((index) => (
-            <Grid xs={1} item key={index}>
-              <CardActionArea onClick={() => navigateToDetail('0')}>
+          {daysByMonth.saturday.map((day) => (
+            <Grid xs={1} item key={day}>
+              <CardActionArea
+                onClick={() => navigateToDetail(`${year}&${month}&${day}`)}
+              >
                 <Card variant="outlined">
                   <CardContent>
                     <Chip
@@ -109,19 +110,17 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                         fontSize: 11,
                         height: 20,
                         mb: 1,
-                        // visibility: 'hidden',
                         color: 'white',
                       }}
                       color="success"
                     />
 
-                    {/* <Typography variant="body1">dia</Typography> */}
                     <Typography
                       variant="h2"
                       component="div"
                       color="textPrimary"
                     >
-                      0{index}/11
+                      {day}/{month}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -130,29 +129,30 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           ))}
         </Grid>
 
-        <Grid mt={4} mb={2} xs={1}>
+        <Grid mt={4} mb={2} xs={1} item>
           <Typography variant="h6" component="div" color="grey">
             Domingo
           </Typography>
         </Grid>
 
         <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
-          {[1, 2, 3, 4].map((index) => (
-            <Grid xs={1} item key={index}>
-              <CardActionArea>
+          {daysByMonth.sunday.map((day) => (
+            <Grid xs={1} item key={day}>
+              <CardActionArea
+                onClick={() => navigateToDetail(`${year}&${month}&${day}`)}
+              >
                 <Card variant="outlined">
                   <CardContent>
                     <Chip
                       label="incompleto"
                       size="small"
                       sx={{
-                        fontSize: 11,
-                        height: 20,
                         mb: 1,
-                        // visibility: 'hidden',
-                        // color: 'white',
+                        height: 20,
+                        fontSize: 11,
+                        color: 'white',
+                        bgcolor: 'Highlight',
                       }}
-                      color="info"
                     />
 
                     {/* <Typography variant="body1">dia</Typography> */}
@@ -161,7 +161,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                       component="div"
                       color="textPrimary"
                     >
-                      0{index}/11
+                      {day}/{month}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -170,16 +170,18 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           ))}
         </Grid>
 
-        <Grid mt={4} mb={2} xs={1}>
+        <Grid mt={4} mb={2} xs={1} item>
           <Typography variant="h6" component="div" color="grey">
             Quarta-feira
           </Typography>
         </Grid>
 
         <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
-          {[1, 2, 3, 4].map((index) => (
-            <Grid xs={1} item key={index}>
-              <CardActionArea onClick={() => navigateToDetail('0')}>
+          {daysByMonth.wednesday.map((day) => (
+            <Grid xs={1} item key={day}>
+              <CardActionArea
+                onClick={() => navigateToDetail(`${year}&${month}&${day}`)}
+              >
                 <Card variant="outlined">
                   <CardContent>
                     <Chip
@@ -200,10 +202,8 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                       component="div"
                       color="textPrimary"
                     >
-                      20{bull}11
+                      {day}/{month}
                     </Typography>
-
-                    {/* <Typography sx={{ mt: 1 }}>70% preenchido</Typography> */}
                   </CardContent>
                 </Card>
               </CardActionArea>
@@ -213,14 +213,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
       </Grid>
 
       <div>
-        {/* <Grid2 container mt={2}>
-          <Grid2>
-            <Typography variant="button" component="div">
-              Sábados
-            </Typography>
-          </Grid2>
-        </Grid2> */}
-
         <Grid2
           container
           spacing={{ xs: 2, md: 2 }}

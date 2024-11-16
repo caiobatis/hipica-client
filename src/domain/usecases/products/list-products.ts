@@ -19,5 +19,25 @@ export namespace ListProducts {
 
   export enum keys {
     LIST_PRODUCTS = 'LIST_PRODUCTS',
+    DEPARTAMENT = 'DEPARTAMENT',
+  }
+}
+
+export namespace Departament {
+  export type ParametersDTO = {
+    id: number
+  }
+
+  export type Parameters = {
+    colection: string
+    id: string
+  }
+
+  export type ResponseDTO = ProductDTO
+
+  export type Response = ProductDTO
+
+  export enum keys {
+    DEPARTAMENT = 'DEPARTAMENT',
   }
 }
