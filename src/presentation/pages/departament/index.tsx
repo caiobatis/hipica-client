@@ -88,12 +88,7 @@ export const Component: React.FC<PageProps> = () => {
   //   },
   // ]
 
-  const {
-    data: departaments,
-    isLoading: isLoadingStock,
-    isError: isStockError,
-    refetch: refetchStock,
-  } = useListProducts({
+  const { data: departaments } = useListProducts({
     colection: 'departaments',
   })
 

@@ -6,7 +6,6 @@ import { ptBR } from '@mui/x-date-pickers/locales'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type React from 'react'
 import { RouterProvider } from 'react-router-dom'
-import { ModalProvider } from '~/infra/providers/modal'
 // import { RecaptchaProvider } from '~/infra/providers/recaptcha'
 import { ToastProvider } from '~/infra/providers/toast'
 import { router } from '~/routes/router'
@@ -29,8 +28,6 @@ function Providers(): React.ReactElement {
             <CssBaseline />
 
             <RouterProvider router={router} />
-
-            <ModalProvider />
 
             <ToastProvider />
           </LocalizationProvider>
