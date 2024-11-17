@@ -1,21 +1,36 @@
-import { useCallback, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDepartament } from '~/infra/hooks'
-import { States, type PageProps } from './types'
+import { Backdrop, CircularProgress } from '@mui/material'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDepartament, useUpdateDepartament } from '~/infra/hooks'
+import type { PageProps } from './types'
 import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
+  const parameters = useParams()
+  const navigate = useNavigate()
+
+  const date = useMemo(() => {
+    return {
+      year: parameters?.id?.split('&')[0],
+      month: parameters?.id?.split('&')[1],
+      day: parameters?.id?.split('&')[2],
+    }
+  }, [parameters])
+
+  const currentDate = `${date.day}/${date.month}/${date.year}`
+
   const [form, setForm] = useState({
     event1: '',
     event2: '',
     es: '',
   })
-  const navigate = useNavigate()
 
-  const { data: departament } = useDepartament({
+  const { data: departament, isLoading } = useDepartament({
     colection: 'departaments',
     id: '0',
   })
+
+  const updateDepartment = useUpdateDepartament()
 
   const handleNavigateToDetail = useCallback(
     (id: string) => {
@@ -25,26 +40,78 @@ export const Component: React.FC<PageProps> = () => {
   )
 
   const handleSetForm = useCallback((field: string, value: string) => {
-    // setForm()
+    setForm((state) => ({
+      ...state,
+      [field]: value,
+    }))
   }, [])
 
   const handleUpdateScale = useCallback(() => {
-    // console.log(field, value)
-  }, [form])
+    handleOpen()
 
-  const stockState = useMemo<States>(() => {
-    return States.default
-  }, [])
+    if (form.event1) {
+      updateDepartment.mutate(
+        {
+          colection: 'departaments',
+          id: '0',
+          data: {
+            ...departament?.scale,
+            [`${date.day}/${date.month}/${date.year}`]: {
+              ...form,
+              updatedAt: new Date().toString(),
+              updatedBy: localStorage.getItem('email')?.toString(),
+            },
+          },
+        },
+        {
+          onSuccess: () => {
+            handleClose()
+            navigate(-1)
+          },
+          onError: () => {
+            handleClose()
+          },
+        },
+      )
+    }
+  }, [form, date, updateDepartment, departament, navigate])
+
+  const currentScale = departament?.scale[currentDate]
+
+  useEffect(() => {
+    if (currentScale) {
+      setForm(currentScale)
+    }
+  }, [departament, currentScale])
+
+  const [open, setOpen] = useState(false)
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleOpen = () => {
+    setOpen(true)
+  }
 
   return (
-    <DashboardContainer
-      stockState={stockState}
-      departament={departament}
-      form={form}
-      setForm={handleSetForm}
-      navigateToDetail={handleNavigateToDetail}
-      updateScale={handleUpdateScale}
-    />
+    <>
+      <DashboardContainer
+        form={form}
+        scale={currentScale}
+        departament={departament}
+        isLoading={updateDepartment.isLoading}
+        setForm={handleSetForm}
+        updateScale={handleUpdateScale}
+        navigateToDetail={handleNavigateToDetail}
+      />
+
+      <Backdrop
+        sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+        open={open || isLoading}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </>
   )
 }
 

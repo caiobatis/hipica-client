@@ -41,3 +41,23 @@ export namespace Departament {
     DEPARTAMENT = 'DEPARTAMENT',
   }
 }
+
+export namespace UpdateDepartament {
+  export type ParametersDTO = {
+    id: number
+  }
+
+  export type Parameters = {
+    colection: string
+    id: string
+    data: ProductDTO['scale']
+  }
+
+  export type ResponseDTO = ProductDTO
+
+  export type Response = void
+
+  export enum keys {
+    DEPARTAMENT = 'DEPARTAMENT',
+  }
+}

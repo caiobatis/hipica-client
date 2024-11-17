@@ -6,7 +6,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import dayjs from 'dayjs'
 import { BodyTitle } from '~/presentation/components/BodyTitle'
 import { Headbar } from '~/presentation/components/Headbar'
 import type { DashboardContainerProps } from '../types'
@@ -20,14 +19,12 @@ const bull = (
   </Box>
 )
 
-const currentYear = dayjs()
-
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
-  navigateToDetail,
-  updateScale,
-  departament,
   form,
+  isLoading,
+  departament,
   setForm,
+  updateScale,
 }) => {
   return (
     <>
@@ -141,7 +138,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
             fullWidth
             onClick={updateScale}
           >
-            Salvar
+            {isLoading ? 'Salvando' : 'Salvar'}
           </Button>
         </Grid>
       </Grid>

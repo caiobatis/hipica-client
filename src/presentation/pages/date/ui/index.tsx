@@ -1,3 +1,4 @@
+import RefreshIcon from '@mui/icons-material/Refresh'
 import {
   Box,
   Card,
@@ -7,9 +8,11 @@ import {
   Divider,
   Grid,
   Grid2,
+  IconButton,
   Typography,
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import dayjs from 'dayjs'
 import { BodyTitle } from '~/presentation/components/BodyTitle'
 import { Headbar } from '~/presentation/components/Headbar'
 import type { DashboardContainerProps } from '../types'
@@ -27,6 +30,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   departament,
   daysByMonth,
   selectedDate,
+  refetch,
   setSelectedDate,
   navigateToDetail,
 }) => {
@@ -75,7 +79,15 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           <Divider />
         </Grid>
 
-        <Grid my={2} mt={4} xs={1} sm={0.5} item>
+        <Grid
+          my={2}
+          mt={4}
+          xs={1}
+          sm={0.5}
+          item
+          display="flex"
+          alignItems="center"
+        >
           <DatePicker
             label="Selecione o mês"
             openTo="month"
@@ -87,6 +99,10 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
               width: '100%',
             }}
           />
+
+          <IconButton sx={{ ml: 2 }} onClick={refetch}>
+            <RefreshIcon />
+          </IconButton>
         </Grid>
 
         <Grid mt={4} mb={2} xs={1} item>
@@ -96,15 +112,17 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
         </Grid>
 
         <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
-          {daysByMonth.saturday.map((day) => (
-            <Grid xs={1} item key={day}>
+          {daysByMonth.saturday?.map((day) => (
+            <Grid xs={1} item key={day.currentDate}>
               <CardActionArea
-                onClick={() => navigateToDetail(`${year}&${month}&${day}`)}
+                onClick={() =>
+                  navigateToDetail(`${year}&${month}&${day.currentDate}`)
+                }
               >
                 <Card variant="outlined">
                   <CardContent>
                     <Chip
-                      label="completo"
+                      label={day.event1 || day.es ? 'completo' : 'pendente'}
                       size="small"
                       sx={{
                         fontSize: 11,
@@ -112,7 +130,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                         mb: 1,
                         color: 'white',
                       }}
-                      color="success"
+                      color={day.event1 || day.es ? 'success' : 'error'}
                     />
 
                     <Typography
@@ -120,8 +138,15 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                       component="div"
                       color="textPrimary"
                     >
-                      {day}/{month}
+                      {day.currentDate}/{month}
                     </Typography>
+
+                    {day.updatedAt && (
+                      <Typography variant="caption">
+                        atualizado em{' '}
+                        {dayjs(day.updatedAt).format('DD/MM/YYYY')}
+                      </Typography>
+                    )}
                   </CardContent>
                 </Card>
               </CardActionArea>
@@ -136,33 +161,40 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
         </Grid>
 
         <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
-          {daysByMonth.sunday.map((day) => (
-            <Grid xs={1} item key={day}>
+          {daysByMonth.sunday?.map((day) => (
+            <Grid xs={1} item key={day.currentDate}>
               <CardActionArea
-                onClick={() => navigateToDetail(`${year}&${month}&${day}`)}
+                onClick={() =>
+                  navigateToDetail(`${year}&${month}&${day.currentDate}`)
+                }
               >
                 <Card variant="outlined">
                   <CardContent>
                     <Chip
-                      label="incompleto"
+                      label={day.event1 || day.es ? 'completo' : 'pendente'}
                       size="small"
                       sx={{
-                        mb: 1,
-                        height: 20,
                         fontSize: 11,
+                        height: 20,
+                        mb: 1,
                         color: 'white',
-                        bgcolor: 'Highlight',
                       }}
+                      color={day.event1 || day.es ? 'success' : 'error'}
                     />
 
-                    {/* <Typography variant="body1">dia</Typography> */}
                     <Typography
                       variant="h2"
                       component="div"
                       color="textPrimary"
                     >
-                      {day}/{month}
+                      {day.currentDate}/{month}
                     </Typography>
+                    {day.updatedAt && (
+                      <Typography variant="caption">
+                        atualizado em{' '}
+                        {dayjs(day.updatedAt).format('DD/MM/YYYY')}
+                      </Typography>
+                    )}
                   </CardContent>
                 </Card>
               </CardActionArea>
@@ -177,24 +209,25 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
         </Grid>
 
         <Grid container columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
-          {daysByMonth.wednesday.map((day) => (
-            <Grid xs={1} item key={day}>
+          {daysByMonth.wednesday?.map((day) => (
+            <Grid xs={1} item key={day.currentDate}>
               <CardActionArea
-                onClick={() => navigateToDetail(`${year}&${month}&${day}`)}
+                onClick={() =>
+                  navigateToDetail(`${year}&${month}&${day.currentDate}`)
+                }
               >
                 <Card variant="outlined">
                   <CardContent>
                     <Chip
-                      label="pendente"
+                      label={day.event1 || day.es ? 'completo' : 'pendente'}
                       size="small"
                       sx={{
                         fontSize: 11,
                         height: 20,
                         mb: 1,
-                        // visibility: 'hidden',
                         color: 'white',
                       }}
-                      color="warning"
+                      color={day.event1 || day.es ? 'success' : 'error'}
                     />
 
                     <Typography
@@ -202,7 +235,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                       component="div"
                       color="textPrimary"
                     >
-                      {day}/{month}
+                      {day.currentDate}/{month}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -326,111 +359,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
               </Card>
             </Grid2> */}
         </Grid2>
-      </div>
-
-      <div>
-        {/* <Grid2 container mt={2}>
-            <Grid2>
-              <Typography variant="button" component="div">
-                Domingos
-              </Typography>
-            </Grid2>
-          </Grid2>
-
-          <Grid2 container mt={2} gap={2}>
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>70% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card>
-                <CardContent>
-                  <Chip
-                    label="evento próximo"
-                    size="small"
-                    sx={{ fontSize: 11, height: 20, mb: 1 }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ color: 'ButtonText', mt: 1 }}>
-                    50% preenchido
-                  </Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-          </Grid2> */}
       </div>
     </>
   )

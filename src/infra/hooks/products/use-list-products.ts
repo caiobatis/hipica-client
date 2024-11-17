@@ -1,4 +1,8 @@
-import { RemoteDepartament, RemoteListProducts } from '~/app/usecases'
+import {
+  RemoteDepartament,
+  RemoteListProducts,
+  RemoteUpdateDepartament,
+} from '~/app/usecases'
 import type { Departament, ListProducts } from '~/domain/usecases/products'
 
 export const useListProducts = (parameters: ListProducts.Parameters) => {
@@ -9,4 +13,9 @@ export const useListProducts = (parameters: ListProducts.Parameters) => {
 export const useDepartament = (parameters: Departament.Parameters) => {
   const listProducts = new RemoteDepartament()
   return listProducts.run(parameters)
+}
+
+export const useUpdateDepartament = () => {
+  const listProducts = new RemoteUpdateDepartament()
+  return listProducts.run()
 }

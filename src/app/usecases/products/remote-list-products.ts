@@ -1,24 +1,24 @@
 /* eslint-disable camelcase */
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { initializeApp } from 'firebase/app'
-import { getDatabase } from 'firebase/database'
 import {
   collection,
   doc,
   getDoc,
   getDocs,
   getFirestore,
+  updateDoc,
 } from 'firebase/firestore/lite'
 import { RemoteUseCase } from '~/app/helpers/remote-usecase'
-import { Departament, ListProducts } from '~/domain/usecases/products'
+import {
+  Departament,
+  ListProducts,
+  type UpdateDepartament,
+} from '~/domain/usecases/products'
 import { firebaseConfig } from '~/firebase/config'
 import { mapProductDTO } from '~/infra/api/mappers/map-product'
 
-// const db = getFirestore(firebaseApp)
-
 const firebase = initializeApp(firebaseConfig)
-
-const database = getDatabase(firebase)
 
 export class RemoteListProducts extends RemoteUseCase<
   ListProducts.Response,
@@ -108,5 +108,28 @@ export class RemoteDepartament extends RemoteUseCase<
     response: Departament.ResponseDTO,
   ): Departament.Response {
     return mapProductDTO(response)
+  }
+}
+
+export class RemoteUpdateDepartament extends RemoteUseCase<
+  UpdateDepartament.Response,
+  UpdateDepartament.Parameters
+> {
+  public run() {
+    return useMutation({
+      mutationFn: (parameters: UpdateDepartament.Parameters) => {
+        return this.service(parameters)
+      },
+    })
+  }
+
+  protected async service(parameters: UpdateDepartament.Parameters) {
+    const db = getFirestore(firebase)
+
+    const dbRef = doc(db, `${parameters.colection}/${parameters.id}`)
+
+    await updateDoc(dbRef, 'scale', parameters.data)
+
+    return
   }
 }

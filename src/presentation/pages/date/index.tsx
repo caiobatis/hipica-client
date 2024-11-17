@@ -1,3 +1,4 @@
+import { Backdrop, CircularProgress } from '@mui/material'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -21,7 +22,12 @@ export const Component: React.FC<PageProps> = () => {
     }
   }, [])
 
-  const { data: departament } = useDepartament({
+  const {
+    data: departament,
+    refetch: refetchDepartment,
+    isLoading,
+    isRefetching,
+  } = useDepartament({
     colection: 'departaments',
     id: '0',
   })
@@ -38,19 +44,74 @@ export const Component: React.FC<PageProps> = () => {
   }, [])
 
   const daysByMonth = useMemo(() => {
-    return getDaysByMonthAndYear(2024, selectedDate!.month())
-  }, [selectedDate])
+    const days = getDaysByMonthAndYear(
+      selectedDate!.year(),
+      selectedDate!.month(),
+    )
+    const monthScale = {
+      sunday: [{}],
+      saturday: [{}],
+      wednesday: [{}],
+    }
 
+    monthScale.sunday = days.sunday.map((day) => {
+      const date = `${day}/${selectedDate!.month() + 1}/${selectedDate?.year()}`
+
+      return {
+        currentDate: day,
+        ...departament?.scale[date],
+      }
+    })
+
+    monthScale.wednesday = days.wednesday.map((day) => {
+      const date = `${day}/${selectedDate!.month() + 1}/${selectedDate?.year()}`
+
+      return {
+        currentDate: day,
+        ...departament?.scale[date],
+      }
+    })
+
+    monthScale.saturday = days.saturday?.map((day) => {
+      const date = `${day}/${selectedDate!.month() + 1}/${selectedDate?.year()}`
+
+      return {
+        currentDate: day,
+        ...departament?.scale[date],
+      }
+    })
+
+    return monthScale
+  }, [selectedDate, departament])
+
+  const [open, setOpen] = useState(false)
+  const handleClose = () => {
+    setOpen(false)
+  }
+  // const handleOpen = () => {
+  //   setOpen(true)
+  // }
   return (
-    <DashboardContainer
-      stockState={stockState}
-      stock={[]}
-      departament={departament}
-      selectedDate={selectedDate}
-      setSelectedDate={handleSelectDate}
-      daysByMonth={daysByMonth}
-      navigateToDetail={handleNavigateToDetail}
-    />
+    <>
+      <DashboardContainer
+        stockState={stockState}
+        stock={[]}
+        departament={departament}
+        selectedDate={selectedDate}
+        setSelectedDate={handleSelectDate}
+        daysByMonth={daysByMonth}
+        navigateToDetail={handleNavigateToDetail}
+        refetch={refetchDepartment}
+      />
+
+      <Backdrop
+        sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+        open={open || isLoading || isRefetching}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </>
   )
 }
 

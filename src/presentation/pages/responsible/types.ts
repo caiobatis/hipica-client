@@ -12,9 +12,15 @@ export enum States {
 export interface DashboardContainerProps {
   stockState?: States
   departament: ProductDTO | undefined
+  scale?: {
+    event1: string
+    event2: string
+    es: string
+  }
   navigateToDetail: (id: string) => void
   updateScale: () => void
   setForm: (id: string, value: string) => void
+  isLoading: boolean
   form: {
     event1: string
     event2: string

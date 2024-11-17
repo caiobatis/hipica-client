@@ -11,6 +11,15 @@ export enum States {
   genericError = 'genericError',
 }
 
+export type DayEvent = {
+  currentDate?: string
+  updatedAt?: string
+  updatedBy?: string
+  event1?: string
+  event2?: string
+  es?: string
+}
+
 export interface DashboardContainerProps {
   stockState?: States
   stock?: ListProducts.Response
@@ -18,9 +27,10 @@ export interface DashboardContainerProps {
   departament?: ProductDTO
   selectedDate: Dayjs | null
   navigateToDetail: (id: string) => void
+  refetch: () => any
   daysByMonth: {
-    saturday: Array<number>
-    sunday: Array<number>
-    wednesday: Array<number>
+    saturday: Array<DayEvent>
+    sunday: Array<DayEvent>
+    wednesday: Array<DayEvent>
   }
 }
