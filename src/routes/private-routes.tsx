@@ -1,9 +1,6 @@
-import { Navigate } from 'react-router-dom'
-
 export const privateRoutes = [
-  { index: true, element: <Navigate to="/entrar" replace /> },
   {
-    path: 'entrar',
+    path: '/',
     lazy: () => import('~/presentation/pages/auth'),
   },
   {

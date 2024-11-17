@@ -13,17 +13,5 @@ export const PrivateLayout = () => {
     }
   }, [localAuth, navigate])
 
-  return (
-    <div>
-      <PrivateContainer
-        user={{
-          name: 'Caio',
-          email: 'a@a.c',
-        }}
-        onGoToHome={() => null}
-        onGoToTransferProduct={() => null}
-        onSignOut={() => null}
-      />
-    </div>
-  )
+  return <PrivateContainer />
 }
