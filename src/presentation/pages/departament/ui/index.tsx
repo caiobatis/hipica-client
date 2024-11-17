@@ -1,10 +1,11 @@
 import {
+  Box,
   Card,
   CardActionArea,
   Chip,
+  CircularProgress,
   Divider,
   Grid,
-  Grid2,
   Typography,
 } from '@mui/material'
 import { BodyTitle } from '~/presentation/components/BodyTitle'
@@ -14,6 +15,7 @@ import type { DashboardContainerProps } from '../types'
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   navigateToDetail,
   departaments,
+  isLoading,
 }) => {
   return (
     <>
@@ -21,7 +23,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
       <Grid
         container
-        mt={4}
         alignItems="center"
         justifyContent="space-between"
         bgcolor="ActiveBorder"
@@ -75,228 +76,15 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
             </Grid>
           ))}
         </Grid>
+
+        {isLoading && (
+          <Grid item xs={1}>
+            <Box display="flex" my={2} justifyContent="center">
+              <CircularProgress color="inherit" />
+            </Box>
+          </Grid>
+        )}
       </Grid>
-
-      <div>
-        <Grid2
-          container
-          spacing={{ xs: 2, md: 2 }}
-          columns={{ xs: 4, sm: 6, md: 8 }}
-          mt={2}
-        >
-          {/* {items.map((item, index) => {
-            return (
-              <Grid2
-                size={{ xs: 2, sm: 2 }}
-                onClick={() => navigateToDetail('123')}
-                key={item.title + index}
-              >
-                <Card variant="outlined">
-                  <CardContent>
-                    <Chip
-                      label=""
-                      size="small"
-                      sx={{
-                        fontSize: 11,
-                        height: 20,
-                        mb: 1,
-                        visibility: 'hidden',
-                      }}
-                      color="secondary"
-                    />
-
-                    <Typography variant="h2" component="div" color="secondary">
-                      20{bull}11
-                    </Typography>
-
-                    <Typography sx={{ mt: 1 }}>70% preenchido</Typography>
-                  </CardContent>
-                </Card>
-              </Grid2>
-            )
-          })} */}
-
-          {/* <Grid2 size={{ xs: 2, sm: 2 }}>
-              <Card>
-                <CardContent>
-                  <Chip
-                    label="evento próximo"
-                    size="small"
-                    sx={{ fontSize: 11, height: 20, mb: 1 }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ color: 'ButtonText', mt: 1 }}>
-                    50% preenchido
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid2> */}
-
-          {/* <Grid2
-              // sx={{ width: 'auto', minWidth: 150 }}
-              size={{ xs: 2, sm: 2 }}
-            >
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </Grid2>
-
-            <Grid2
-              // sx={{ width: 'auto', minWidth: 150 }}
-              size={{ xs: 2, sm: 2 }}
-            >
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </Grid2> */}
-        </Grid2>
-      </div>
-
-      <div>
-        {/* <Grid2 container mt={2}>
-            <Grid2>
-              <Typography variant="button" component="div">
-                Domingos
-              </Typography>
-            </Grid2>
-          </Grid2>
-
-          <Grid2 container mt={2} gap={2}>
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>70% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card>
-                <CardContent>
-                  <Chip
-                    label="evento próximo"
-                    size="small"
-                    sx={{ fontSize: 11, height: 20, mb: 1 }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ color: 'ButtonText', mt: 1 }}>
-                    50% preenchido
-                  </Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-
-            <CardActionArea sx={{ width: 'auto', minWidth: 150 }}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </CardActionArea>
-          </Grid2> */}
-      </div>
     </>
   )
 }

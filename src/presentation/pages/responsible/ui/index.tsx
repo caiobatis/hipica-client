@@ -32,7 +32,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
       <Grid
         container
-        mt={4}
         alignItems="center"
         justifyContent="space-between"
         bgcolor="ActiveBorder"

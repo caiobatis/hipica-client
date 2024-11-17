@@ -7,9 +7,8 @@ import {
   Chip,
   Divider,
   Grid,
-  Grid2,
   IconButton,
-  Typography,
+  Typography
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
@@ -43,7 +42,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
       <Grid
         container
-        mt={4}
         alignItems="center"
         justifyContent="space-between"
         bgcolor="ActiveBorder"
@@ -244,122 +242,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           ))}
         </Grid>
       </Grid>
-
-      <div>
-        <Grid2
-          container
-          spacing={{ xs: 2, md: 2 }}
-          columns={{ xs: 4, sm: 6, md: 8 }}
-          mt={2}
-        >
-          {/* {items.map((item, index) => {
-            return (
-              <Grid2
-                size={{ xs: 2, sm: 2 }}
-                onClick={() => navigateToDetail('123')}
-                key={item.title + index}
-              >
-                <Card variant="outlined">
-                  <CardContent>
-                    <Chip
-                      label=""
-                      size="small"
-                      sx={{
-                        fontSize: 11,
-                        height: 20,
-                        mb: 1,
-                        visibility: 'hidden',
-                      }}
-                      color="secondary"
-                    />
-
-                    <Typography variant="h2" component="div" color="secondary">
-                      20{bull}11
-                    </Typography>
-
-                    <Typography sx={{ mt: 1 }}>70% preenchido</Typography>
-                  </CardContent>
-                </Card>
-              </Grid2>
-            )
-          })} */}
-
-          {/* <Grid2 size={{ xs: 2, sm: 2 }}>
-              <Card>
-                <CardContent>
-                  <Chip
-                    label="evento próximo"
-                    size="small"
-                    sx={{ fontSize: 11, height: 20, mb: 1 }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ color: 'ButtonText', mt: 1 }}>
-                    50% preenchido
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid2> */}
-
-          {/* <Grid2
-              // sx={{ width: 'auto', minWidth: 150 }}
-              size={{ xs: 2, sm: 2 }}
-            >
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </Grid2>
-
-            <Grid2
-              // sx={{ width: 'auto', minWidth: 150 }}
-              size={{ xs: 2, sm: 2 }}
-            >
-              <Card variant="outlined">
-                <CardContent>
-                  <Chip
-                    label=""
-                    size="small"
-                    sx={{
-                      fontSize: 11,
-                      height: 20,
-                      mb: 1,
-                      visibility: 'hidden',
-                    }}
-                    color="secondary"
-                  />
-
-                  <Typography variant="h2" component="div" color="secondary">
-                    20{bull}11
-                  </Typography>
-
-                  <Typography sx={{ mt: 1 }}>10% preenchido</Typography>
-                </CardContent>
-              </Card>
-            </Grid2> */}
-        </Grid2>
-      </div>
     </>
   )
 }

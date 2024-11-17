@@ -4,13 +4,15 @@ import { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDepartament } from '~/infra/hooks'
 import { getDaysByMonthAndYear } from '~/infra/utils/days'
-import { States, type PageProps } from './types'
+import type { PageProps } from './types'
 import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
   const navigate = useNavigate()
 
-  const currentDate = dayjs(localStorage.getItem('date_')) || dayjs()
+  const storageDate = localStorage.getItem('date_')
+
+  const currentDate = dayjs(storageDate ?? new Date())
 
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(currentDate)
 
@@ -38,10 +40,6 @@ export const Component: React.FC<PageProps> = () => {
     },
     [navigate],
   )
-
-  const stockState = useMemo<States>(() => {
-    return States.default
-  }, [])
 
   const daysByMonth = useMemo(() => {
     const days = getDaysByMonthAndYear(
@@ -85,17 +83,14 @@ export const Component: React.FC<PageProps> = () => {
   }, [selectedDate, departament])
 
   const [open, setOpen] = useState(false)
+
   const handleClose = () => {
     setOpen(false)
   }
-  // const handleOpen = () => {
-  //   setOpen(true)
-  // }
+
   return (
     <>
       <DashboardContainer
-        stockState={stockState}
-        stock={[]}
         departament={departament}
         selectedDate={selectedDate}
         setSelectedDate={handleSelectDate}

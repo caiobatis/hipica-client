@@ -23,7 +23,7 @@ export function Header({ email }: Props) {
                 src="https://i.pinimg.com/originals/32/1b/5e/321b5e2dbf1869ad6d15bb3af1a76426.png"
               />
             </Grid2>
-            <Grid2 size="grow">
+            <Grid2 flexGrow={2}>
               <Typography variant="overline" lineHeight={1.5}>
                 IASD Portal da Hípica
               </Typography>
@@ -37,10 +37,13 @@ export function Header({ email }: Props) {
               </Typography>
             </Grid2>
             {!!email && (
-              <Grid2 size="auto" textAlign="right">
+              <Box
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+                textAlign="right"
+              >
                 <Typography variant="caption">Autenticado com:</Typography>
                 <Typography variant="subtitle2">{email}</Typography>
-              </Grid2>
+              </Box>
             )}
           </Grid2>
         </Container>

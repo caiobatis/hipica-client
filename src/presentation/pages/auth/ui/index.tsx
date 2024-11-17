@@ -28,6 +28,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
               id="outlined-required"
               label="E-mail"
               placeholder="email@aqui.com.br"
+              type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               autoComplete="off"

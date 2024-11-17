@@ -5,24 +5,19 @@ export function Headbar({ hasBackButton = true }) {
   const navigate = useNavigate()
   return (
     <div>
-      <Grid2
-        container
-        mt={2}
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Grid2 container alignItems="center" justifyContent="space-between">
         <Grid2 mb={2}>
           <Typography variant="h4" mb={1}>
             Ajude a organizar nossos cultos
           </Typography>
 
-          <Typography variant="body1" mb={1}>
+          <Typography variant="body1">
             Organize sua escala e contribua com a organizacao dos cultos.
           </Typography>
         </Grid2>
 
         {hasBackButton && (
-          <Grid2>
+          <Grid2 mb={2}>
             <Button
               type="button"
               variant="outlined"

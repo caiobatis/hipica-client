@@ -1,7 +1,7 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useListProducts } from '~/infra/hooks'
-import { States, type PageProps } from './types'
+import type { PageProps } from './types'
 import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
@@ -88,7 +88,7 @@ export const Component: React.FC<PageProps> = () => {
   //   },
   // ]
 
-  const { data: departaments } = useListProducts({
+  const { data: departaments, isLoading } = useListProducts({
     colection: 'departaments',
   })
 
@@ -99,21 +99,9 @@ export const Component: React.FC<PageProps> = () => {
     [navigate],
   )
 
-  const stockState = useMemo<States>(
-    () => {
-      // if (isLoadingStock) return States.loading
-      // if (isStockError) return States.genericError
-      return States.default
-    },
-    [
-      // isLoadingStock, isStockError
-    ],
-  )
-
   return (
     <DashboardContainer
-      stockState={stockState}
-      // departaments={departaments}
+      isLoading={isLoading}
       departaments={departaments ?? []}
       navigateToDetail={handleNavigateToDetail}
     />
