@@ -4,6 +4,7 @@ import {
   Container,
   Divider,
   Grid2,
+  Link,
   Typography,
 } from '@mui/material'
 
@@ -12,6 +13,12 @@ type Props = {
 }
 
 export function Header({ email }: Props) {
+  const logout = () => {
+    localStorage.removeItem('email')
+    localStorage.removeItem('date_')
+
+    document.location.reload()
+  }
   return (
     <div>
       <Box sx={{ bgcolor: 'white' }}>
@@ -42,7 +49,23 @@ export function Header({ email }: Props) {
                 textAlign="right"
               >
                 <Typography variant="caption">Autenticado com:</Typography>
-                <Typography variant="subtitle2">{email}</Typography>
+
+                <br />
+
+                <div>
+                  <Typography
+                    variant="caption"
+                    fontWeight={700}
+                    component="span"
+                  >
+                    {email}
+                  </Typography>
+                  <Typography variant="caption"> • </Typography>
+
+                  <Link onClick={logout} sx={{ cursor: 'pointer' }}>
+                    <Typography variant="caption">sair</Typography>
+                  </Link>
+                </div>
               </Box>
             )}
           </Grid2>
