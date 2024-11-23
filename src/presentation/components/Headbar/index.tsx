@@ -1,4 +1,4 @@
-import { Button, Grid2, Typography } from '@mui/material'
+import { Button, Grid2 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 export function Headbar({ hasBackButton = true }) {
@@ -7,13 +7,13 @@ export function Headbar({ hasBackButton = true }) {
     <div>
       <Grid2 container alignItems="center" justifyContent="space-between">
         <Grid2 mb={2}>
-          <Typography variant="h4" mb={1}>
+          {/* <Typography variant="h4" mb={1}>
             Ajude a organizar nossos cultos
           </Typography>
 
           <Typography variant="body1">
             Organize sua escala e contribua com a organizacao dos cultos.
-          </Typography>
+          </Typography> */}
         </Grid2>
 
         {hasBackButton && (

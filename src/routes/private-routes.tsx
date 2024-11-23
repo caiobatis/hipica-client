@@ -22,7 +22,7 @@ export const privateRoutes = [
         lazy: () => import('~/presentation/pages/date'),
       },
       {
-        path: ':id/responsavel/:id',
+        path: ':dep/responsavel/:id',
         lazy: () => import('~/presentation/pages/responsible'),
       },
     ],

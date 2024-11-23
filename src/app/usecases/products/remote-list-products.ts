@@ -87,7 +87,7 @@ export class RemoteDepartament extends RemoteUseCase<
         refetchOnMount: false,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
-        // enabled: parameters.enabled,
+        enabled: true,
       },
     )
   }

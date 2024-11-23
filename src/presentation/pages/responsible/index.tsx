@@ -1,13 +1,20 @@
 import { Backdrop, CircularProgress } from '@mui/material'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Departament } from '~/domain/usecases'
 import { useDepartament, useUpdateDepartament } from '~/infra/hooks'
+import { queryClient } from '~/infra/providers'
 import type { PageProps } from './types'
 import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
   const parameters = useParams()
   const navigate = useNavigate()
+
+  if (!parameters?.dep) {
+    navigate(-1)
+    return
+  }
 
   const date = useMemo(() => {
     return {
@@ -27,7 +34,7 @@ export const Component: React.FC<PageProps> = () => {
 
   const { data: departament, isLoading } = useDepartament({
     colection: 'departaments',
-    id: '0',
+    id: parameters?.dep,
   })
 
   const updateDepartment = useUpdateDepartament()
@@ -53,7 +60,7 @@ export const Component: React.FC<PageProps> = () => {
       updateDepartment.mutate(
         {
           colection: 'departaments',
-          id: '0',
+          id: parameters.dep!,
           data: {
             ...departament?.scale,
             [`${date.day}/${date.month}/${date.year}`]: {
@@ -65,6 +72,10 @@ export const Component: React.FC<PageProps> = () => {
         },
         {
           onSuccess: () => {
+            queryClient.invalidateQueries([
+              Departament.keys.DEPARTAMENT,
+              { id: parameters.dep },
+            ])
             handleClose()
             navigate(-1)
           },
