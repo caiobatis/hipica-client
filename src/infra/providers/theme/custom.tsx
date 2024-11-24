@@ -781,16 +781,16 @@ export const navigationCustomizations: Components<Theme> = {
         [`&.${tabClasses.selected}`]: {
           color: gray[900],
         },
-        ...theme.applyStyles('dark', {
-          ':hover': {
-            color: (theme.vars || theme).palette.text.primary,
-            backgroundColor: gray[800],
-            borderColor: gray[700],
-          },
-          [`&.${tabClasses.selected}`]: {
-            color: '#fff',
-          },
-        }),
+        // ...theme.applyStyles('dark', {
+        //   ':hover': {
+        //     color: (theme.vars || theme).palette.text.primary,
+        //     backgroundColor: gray[800],
+        //     borderColor: gray[700],
+        //   },
+        //   [`&.${tabClasses.selected}`]: {
+        //     color: '#fff',
+        //   },
+        // }),
       }),
     },
   },
