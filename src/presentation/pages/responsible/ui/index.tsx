@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Container,
   Divider,
   Grid,
   TextField,
@@ -28,47 +29,36 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 }) => {
   return (
     <>
-      <Headbar />
+      <Container fixed>
+        <Headbar hasBackButton={false} />
 
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        bgcolor="ActiveBorder"
-        p={2}
-        borderRadius={1}
-        columns={{ xs: 1, sm: 1, md: 1 }}
-      >
         <BodyTitle
-          number={3}
-          title="Insira o responsável do dia"
-          description="Caso seu departamento nao esteja na lista, entre em contato com departamento de gestão."
+          number={1}
+          title="Gerencie sua escala"
+          description="Caso seu departamento tenha várias responsabilidades, teremos mais uma opcao para a escolha"
         />
 
-        <Grid my={4} xs={1} item>
-          <div>
-            <Box
-              px={2}
-              py={0.5}
-              borderRadius={1}
-              display="inline-flex"
-              bgcolor="Highlight"
-              alignItems="center"
-              color="white"
-            >
-              <Typography variant="body1" fontWeight={600}>
-                {departament?.label} {bull} {departament?.departament}
-              </Typography>
-              {bull}
-              <Typography variant="body1">27/10/2024</Typography>
-            </Box>
-          </div>
-        </Grid>
+        <Box bgcolor="#f7f7f7" borderRadius={2} p={2} mb={2}>
+          <Typography variant="h6">Insira o responsável</Typography>
 
-        <Grid xs={1} item>
-          <Divider />
-        </Grid>
+          <Typography variant="body2" my={0.5}>
+            Os dias estao separados em sábados, domingos e quartas.
+          </Typography>
 
+          <Divider sx={{ my: 2 }}></Divider>
+
+          <Typography variant="h6">Resumo</Typography>
+          <Typography variant="body1" my={0.5}>
+            {departament?.label} / {departament?.departament}
+          </Typography>
+
+          <Typography variant="body1" my={0.5}>
+            27/11/2024
+          </Typography>
+        </Box>
+      </Container>
+
+      <Container fixed>
         <Grid container columns={{ xs: 1, sm: 2, md: 3 }} spacing={2} my={2}>
           <Grid xs={1} item>
             <Typography
@@ -140,7 +130,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
             {isLoading ? 'Salvando' : 'Salvar'}
           </Button>
         </Grid>
-      </Grid>
+      </Container>
     </>
   )
 }

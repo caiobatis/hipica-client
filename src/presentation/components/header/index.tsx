@@ -1,13 +1,6 @@
-import {
-  Avatar,
-  Box,
-  CardActionArea,
-  Container,
-  Divider,
-  Grid2,
-  Link,
-  Typography,
-} from '@mui/material'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import { Box, Container, Grid, IconButton, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 type Props = {
@@ -26,7 +19,46 @@ export function Header({ email }: Props) {
 
   return (
     <div>
-      <Box sx={{ bgcolor: 'white' }}>
+      <Box sx={{ py: 2, bgcolor: '#355fa3' }}>
+        <Container fixed>
+          <Grid container columns={{ xs: 4 }}>
+            <Grid item display="flex" xs={3}>
+              <IconButton
+                color="info"
+                sx={{ bgcolor: 'transparent !important', color: 'white' }}
+                onClick={() => navigate(-1)}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+              <Box ml={1}>
+                <Typography
+                  variant="body1"
+                  fontWeight={500}
+                  lineHeight={1.5}
+                  color="white"
+                >
+                  Gestão de Escalas
+                </Typography>
+                <Typography variant="body2" color="white">
+                  {email}
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid item xs={1} display="flex" justifyContent="flex-end">
+              <IconButton
+                color="info"
+                sx={{ bgcolor: 'transparent !important', color: 'white' }}
+                onClick={logout}
+              >
+                <ExitToAppIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* <Box sx={{ bgcolor: 'white' }}>
         <Container sx={{ px: 4, py: 2, bgcolor: 'white' }}>
           <Grid2 container justifyContent="flex-start" alignItems="flex-start">
             <Grid2 mr={2}>
@@ -50,6 +82,7 @@ export function Header({ email }: Props) {
                 Gestão de cultos
               </Typography>
             </Grid2>
+
             {!!email && (
               <Box
                 sx={{ display: { xs: 'none', sm: 'block' } }}
@@ -77,9 +110,9 @@ export function Header({ email }: Props) {
             )}
           </Grid2>
         </Container>
-      </Box>
+      </Box> */}
 
-      <Divider />
+      {/* <Divider /> */}
     </div>
   )
 }

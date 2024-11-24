@@ -1,4 +1,4 @@
-import { Box, Grid, Grid2, Typography } from '@mui/material'
+import { Grid, Grid2, Typography } from '@mui/material'
 
 type Props = {
   number: number
@@ -8,8 +8,8 @@ type Props = {
 
 export function BodyTitle({ number, title, description }: Props) {
   return (
-    <Grid xs={1} alignItems="center" display="flex" item>
-      <Box
+    <Grid xs={1} alignItems="center" display="flex" item py={2}>
+      {/* <Box
         width={40}
         height={40}
         minWidth={40}
@@ -23,14 +23,17 @@ export function BodyTitle({ number, title, description }: Props) {
         <Typography variant="h3" component="div" color="white">
           {number}
         </Typography>
-      </Box>
+      </Box> */}
 
       <Grid2>
-        <Typography variant="h6" component="div">
+        <Typography variant="body2">Olá diretor(a),</Typography>
+        <Typography variant="h4" component="div">
           {title}
         </Typography>
 
-        <Typography variant="body1">{description}</Typography>
+        {/* <Typography variant="body1" maxWidth={700}>
+          {description}
+        </Typography> */}
       </Grid2>
     </Grid>
   )

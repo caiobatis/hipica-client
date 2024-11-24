@@ -45,6 +45,10 @@ export const inputsCustomizations: Components<Theme> = {
         boxShadow: 'none',
         borderRadius: (theme.vars || theme).shape.borderRadius,
         textTransform: 'none',
+        borderEndEndRadius: 30,
+        borderStartStartRadius: 30,
+        borderStartEndRadius: 30,
+        borderEndStartRadius: 30,
         // variants: [
         //   {
         //     props: {
@@ -390,6 +394,13 @@ export const inputsCustomizations: Components<Theme> = {
       },
     },
   },
+  MuiInputLabel: {
+    styleOverrides: {
+      root: {
+        display: 'none',
+      },
+    },
+  },
   MuiOutlinedInput: {
     styleOverrides: {
       input: {
@@ -399,7 +410,7 @@ export const inputsCustomizations: Components<Theme> = {
         padding: '8px 12px',
         color: (theme.vars || theme).palette.text.primary,
         borderRadius: (theme.vars || theme).shape.borderRadius,
-        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        border: `1px solid ${(theme.vars || theme).palette.text.secondary}`,
         backgroundColor: (theme.vars || theme).palette.background.default,
         transition: 'border 120ms ease-in',
         '&:hover': {

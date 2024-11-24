@@ -1,13 +1,12 @@
-import RefreshIcon from '@mui/icons-material/Refresh'
 import {
   Box,
   Card,
   CardActionArea,
   CardContent,
   Chip,
+  Container,
   Divider,
   Grid,
-  IconButton,
   Typography,
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -38,59 +37,36 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
   return (
     <>
-      <Headbar />
+      <Container fixed>
+        <Headbar hasBackButton={false} />
 
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        bgcolor="ActiveBorder"
-        p={2}
-        borderRadius={1}
-        columns={{ xs: 1, sm: 1, md: 1 }}
-      >
         <BodyTitle
-          number={2}
-          title="Selecione o mês e o dia"
-          description="Caso seu departamento nao esteja na lista, entre em contato com departamento de gestão."
+          number={1}
+          title="Gerencie sua escala"
+          description="Caso seu departamento tenha várias responsabilidades, teremos mais uma opcao para a escolha"
         />
 
-        <Grid my={4} xs={1} item>
-          <div>
-            <Typography variant="body1">
-              {departament?.label}/{departament?.departament}
-            </Typography>
-            {/* <Box
-              display="inline-flex"
-              alignItems="center"
-              bgcolor="black"
-              color="white"
-              px={2}
-              py={0.5}
-              borderRadius={1}
-            >
-            </Box> */}
-          </div>
-        </Grid>
+        <Box bgcolor="#f7f7f7" borderRadius={2} p={2} mb={2}>
+          <Typography variant="h6">Selecione o mês e dia</Typography>
 
-        <Grid xs={1} item>
-          <Divider />
-        </Grid>
-
-        <Grid mt={4} mb={0} xs={1} item>
-          <Typography variant="h6" component="div" color="grey">
-            Mês
+          <Typography variant="body2" my={0.5}>
+            Os dias estao separados em sábados, domingos e quartas.
           </Typography>
-        </Grid>
-        <Grid
-          my={2}
-          mt={2}
-          xs={1}
-          sm={0.5}
-          item
-          display="flex"
-          alignItems="center"
-        >
+
+          <Divider sx={{ my: 2 }}></Divider>
+
+          <Typography variant="h6">Resumo</Typography>
+          <Typography variant="body1" my={0.5}>
+            {departament?.label} / {departament?.departament}
+          </Typography>
+        </Box>
+      </Container>
+
+      <Container fixed>
+        <Grid xs={1} sm={0.5} item>
+          <Typography variant="caption" component="div">
+            Selecione o mês
+          </Typography>
           <DatePicker
             label="Selecione o mês"
             openTo="month"
@@ -103,9 +79,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
             }}
           />
 
-          <IconButton sx={{ ml: 2 }} onClick={refetch}>
+          {/* <IconButton sx={{ ml: 2 }} onClick={refetch}>
             <RefreshIcon />
-          </IconButton>
+          </IconButton> */}
         </Grid>
 
         {/* <Grid mt={4} mb={2} xs={1} item>
@@ -293,7 +269,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
             </Grid>
           ))}
         </Grid>
-      </Grid>
+      </Container>
     </>
   )
 }

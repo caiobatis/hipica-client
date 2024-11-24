@@ -1,18 +1,23 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { ErrorLayout, PrivateLayout } from '~/presentation/layouts'
+import {
+  ErrorLayout,
+  PrivateLayout,
+  PublicLayout,
+} from '~/presentation/layouts'
 import { privateRoutes } from '~/routes/private-routes'
+import { publicRoutes } from '~/routes/public-routes'
 
 /**
  * Application routes
  * https://reactrouter.com/en/main/routers/create-browser-router
  */
 export const router = createBrowserRouter([
-  // {
-  //   path: '',
-  //   element: <PrivateLayout />,
-  //   errorElement: <ErrorLayout />,
-  //   children: publicRoutes,
-  // },
+  {
+    path: '',
+    element: <PublicLayout />,
+    errorElement: <ErrorLayout />,
+    children: publicRoutes,
+  },
   {
     path: '',
     element: <PrivateLayout />,

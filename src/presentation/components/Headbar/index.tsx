@@ -1,4 +1,4 @@
-import { Button, Grid2 } from '@mui/material'
+import { Grid2 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 export function Headbar({ hasBackButton = true }) {
@@ -16,7 +16,7 @@ export function Headbar({ hasBackButton = true }) {
           </Typography> */}
         </Grid2>
 
-        {hasBackButton && (
+        {/* {hasBackButton && (
           <Grid2 mb={2}>
             <Button
               type="button"
@@ -28,7 +28,7 @@ export function Headbar({ hasBackButton = true }) {
               Voltar
             </Button>
           </Grid2>
-        )}
+        )} */}
       </Grid2>
     </div>
   )
