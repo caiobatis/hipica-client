@@ -11,15 +11,6 @@ import { BodyTitle } from '~/presentation/components/BodyTitle'
 import { Headbar } from '~/presentation/components/Headbar'
 import type { DashboardContainerProps } from '../types'
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-)
-
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   form,
   isLoading,
@@ -30,7 +21,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   return (
     <>
       <Container fixed>
-        <Headbar hasBackButton={false} />
+        <Headbar />
 
         <BodyTitle
           number={1}

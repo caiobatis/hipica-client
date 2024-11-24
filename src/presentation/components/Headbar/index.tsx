@@ -1,8 +1,6 @@
 import { Grid2 } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
 
-export function Headbar({ hasBackButton = true }) {
-  const navigate = useNavigate()
+export function Headbar() {
   return (
     <div>
       <Grid2 container alignItems="center" justifyContent="space-between">

@@ -6,7 +6,7 @@ type Props = {
   description: string
 }
 
-export function BodyTitle({ number, title, description }: Props) {
+export function BodyTitle({ title }: Props) {
   return (
     <Grid xs={1} alignItems="center" display="flex" item py={2}>
       {/* <Box

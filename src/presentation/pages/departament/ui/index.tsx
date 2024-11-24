@@ -20,7 +20,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   return (
     <>
       <Container fixed>
-        <Headbar hasBackButton={false} />
+        <Headbar />
 
         <BodyTitle
           number={1}
