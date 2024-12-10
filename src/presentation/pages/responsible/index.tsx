@@ -26,11 +26,7 @@ export const Component: React.FC<PageProps> = () => {
 
   const currentDate = `${date.day}/${date.month}/${date.year}`
 
-  const [form, setForm] = useState({
-    event1: '',
-    event2: '',
-    es: '',
-  })
+  const [form, setForm] = useState({})
 
   const { data: departament, isLoading } = useDepartament({
     colection: 'departaments',
@@ -56,7 +52,7 @@ export const Component: React.FC<PageProps> = () => {
   const handleUpdateScale = useCallback(() => {
     handleOpen()
 
-    if (form.event1) {
+    if (form) {
       updateDepartment.mutate(
         {
           colection: 'departaments',
@@ -84,10 +80,22 @@ export const Component: React.FC<PageProps> = () => {
           },
         },
       )
+      return
     }
-  }, [form, date, updateDepartment, departament, navigate])
 
-  const currentScale = departament?.scale[currentDate]
+    handleClose()
+  }, [
+    form,
+    updateDepartment,
+    parameters.dep,
+    departament?.scale,
+    date.day,
+    date.month,
+    date.year,
+    navigate,
+  ])
+
+  const currentScale = departament?.scale?.[currentDate]
 
   useEffect(() => {
     if (currentScale) {
@@ -96,6 +104,7 @@ export const Component: React.FC<PageProps> = () => {
   }, [departament, currentScale])
 
   const [open, setOpen] = useState(false)
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -107,6 +116,7 @@ export const Component: React.FC<PageProps> = () => {
     <>
       <DashboardContainer
         form={form}
+        currentDate={currentDate}
         scale={currentScale}
         departament={departament}
         isLoading={updateDepartment.isLoading}

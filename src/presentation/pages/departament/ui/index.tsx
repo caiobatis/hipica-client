@@ -41,7 +41,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
       <Box bgcolor="#fff">
         <Container fixed>
           <Box textAlign="right">
-            <Typography>39 itens encontrados</Typography>
+            <Typography>{departaments?.length} itens encontrados</Typography>
           </Box>
 
           <Grid

@@ -1,7 +1,7 @@
 import { Backdrop, CircularProgress } from '@mui/material'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useCallback, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDepartament } from '~/infra/hooks'
 import { getDaysByMonthAndYear } from '~/infra/utils/days'
 import type { PageProps } from './types'
@@ -9,6 +9,13 @@ import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
   const navigate = useNavigate()
+
+  const parameters = useParams()
+
+  if (!parameters?.id) {
+    navigate(-1)
+    return
+  }
 
   const storageDate = localStorage.getItem('date_')
 
@@ -31,7 +38,7 @@ export const Component: React.FC<PageProps> = () => {
     isRefetching,
   } = useDepartament({
     colection: 'departaments',
-    id: '0',
+    id: parameters?.id?.toString(),
   })
 
   const handleNavigateToDetail = useCallback(
@@ -57,7 +64,7 @@ export const Component: React.FC<PageProps> = () => {
 
       return {
         currentDate: day,
-        ...departament?.scale[date],
+        ...departament?.scale?.[date],
       }
     })
 
@@ -66,7 +73,7 @@ export const Component: React.FC<PageProps> = () => {
 
       return {
         currentDate: day,
-        ...departament?.scale[date],
+        ...departament?.scale?.[date],
       }
     })
 
@@ -75,7 +82,7 @@ export const Component: React.FC<PageProps> = () => {
 
       return {
         currentDate: day,
-        ...departament?.scale[date],
+        ...departament?.scale?.[date],
       }
     })
 
