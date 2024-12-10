@@ -3,6 +3,7 @@ export interface Product {
   label: string
   departament: string
   director: string
+  fields?: Array<string>
   scale: {
     [key: string]: {
       updatedAt?: string

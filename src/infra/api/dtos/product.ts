@@ -3,7 +3,7 @@ export interface ProductDTO {
   label: string
   departament: string
   director: string
-  fields: Array<string>
+  fields?: Array<string>
   scale: {
     [key: string]: {
       updatedAt?: string

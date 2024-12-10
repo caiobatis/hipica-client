@@ -27,4 +27,17 @@ export const privateRoutes = [
       },
     ],
   },
+  {
+    path: 'evento',
+    children: [
+      {
+        path: '',
+        lazy: () => import('~/presentation/pages/event'),
+      },
+      {
+        path: ':id',
+        lazy: () => import('~/presentation/pages/date'),
+      },
+    ],
+  },
 ]

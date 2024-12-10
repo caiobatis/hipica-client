@@ -53,7 +53,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
       <Container fixed>
         <Grid container columns={{ xs: 1, sm: 2, md: 3 }} spacing={2} my={2}>
-          {departament?.fields.map((item) => (
+          {departament?.fields?.map((item) => (
             <Grid xs={1} item key={item}>
               <Typography
                 variant="overline"
