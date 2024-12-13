@@ -1,4 +1,6 @@
 import {
+  Avatar,
+  AvatarGroup,
   Box,
   Card,
   CardActionArea,
@@ -133,19 +135,26 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                               {day.currentDate}/{month}
                             </Typography>
 
-                            {/* <Chip
-                              label={
-                                day.event1 || day.es ? 'completo' : 'pendente'
-                              }
-                              size="small"
-                              sx={{
-                                fontSize: 11,
-                                height: 20,
-                                mb: 1,
-                                color: 'white',
-                              }}
-                              color={day.event1 || day.es ? 'success' : 'error'}
-                            /> */}
+                            <AvatarGroup>
+                              <Avatar
+                                alt="Remy Sharp"
+                                sx={{ width: 32, height: 32 }}
+                              />
+                              <Avatar
+                                alt="Travis Howard"
+                                sx={{ width: 32, height: 32 }}
+                              />
+                              <Avatar
+                                alt="Travis Howard"
+                                sx={{ width: 32, height: 32 }}
+                              />
+                              <Avatar
+                                alt="Travis Howard"
+                                sx={{ width: 32, height: 32 }}
+                              >
+                                <span>+2</span>
+                              </Avatar>
+                            </AvatarGroup>
 
                             {day.updatedAt && (
                               <Typography variant="caption" component="div">
@@ -154,23 +163,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                               </Typography>
                             )}
                           </div>
-
-                          {/* <div>
-                            <Box py={1}>
-                              <Typography variant="body1" color="grey">
-                                Responsável:
-                              </Typography>
-                              <Typography variant="body1" color="grey">
-                                1 - {day.event1}
-                              </Typography>
-                              <Typography variant="body1" color="grey">
-                                ES - {day.es}
-                              </Typography>
-                              <Typography variant="body1" color="grey">
-                                2 - {day.event2}
-                              </Typography>
-                            </Box>
-                          </div> */}
                         </Box>
                       </CardContent>
                     </Card>

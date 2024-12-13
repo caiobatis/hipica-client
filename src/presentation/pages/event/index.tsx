@@ -61,12 +61,6 @@ export const Component: React.FC<PageProps> = () => {
     return monthScale
   }, [selectedDate])
 
-  const [open, setOpen] = useState(false)
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
   return (
     <>
       <DashboardContainer
@@ -75,14 +69,6 @@ export const Component: React.FC<PageProps> = () => {
         daysByMonth={daysByMonth}
         navigateToDetail={handleNavigateToDetail}
       />
-
-      {/* <Backdrop
-        sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
-        open={open || isLoading || isRefetching}
-        onClick={handleClose}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop> */}
     </>
   )
 }
