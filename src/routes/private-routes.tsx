@@ -28,7 +28,7 @@ export const privateRoutes = [
     ],
   },
   {
-    path: 'evento',
+    path: 'escala-geral',
     children: [
       {
         path: '',
@@ -36,7 +36,7 @@ export const privateRoutes = [
       },
       {
         path: ':id',
-        lazy: () => import('~/presentation/pages/date'),
+        lazy: () => import('~/presentation/pages/eventDay'),
       },
     ],
   },

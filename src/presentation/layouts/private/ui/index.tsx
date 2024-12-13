@@ -6,6 +6,7 @@ import { BodyStyle } from '~/presentation/layouts/private/ui/styles'
 
 export const PrivateContainer: React.FC<PrivateContainerProps> = () => {
   const email = localStorage.getItem('email')
+
   return (
     <main>
       <BodyStyle />

@@ -3,10 +3,11 @@ import { Grid, Grid2, Typography } from '@mui/material'
 type Props = {
   number: number
   title: string
-  description: string
+  description?: string
+  msg?: string
 }
 
-export function BodyTitle({ title }: Props) {
+export function BodyTitle({ title, msg: message = 'Olá,' }: Props) {
   return (
     <Grid xs={1} alignItems="center" display="flex" item py={2}>
       {/* <Box
@@ -26,7 +27,7 @@ export function BodyTitle({ title }: Props) {
       </Box> */}
 
       <Grid2>
-        <Typography variant="body2">Olá diretor(a),</Typography>
+        <Typography variant="body2">{message}</Typography>
         <Typography variant="h4" component="div">
           {title}
         </Typography>

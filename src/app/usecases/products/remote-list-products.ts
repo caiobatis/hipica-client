@@ -95,6 +95,7 @@ export class RemoteDepartament extends RemoteUseCase<
   protected async service(parameters: Departament.Parameters) {
     const db = getFirestore(firebase)
 
+    // const dbRef = doc(db, `${parameters.colection}/${parameters.id}`)
     const dbRef = doc(db, `${parameters.colection}/${parameters.id}`)
 
     const response = await getDoc(dbRef)

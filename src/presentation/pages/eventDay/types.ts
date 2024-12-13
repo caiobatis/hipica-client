@@ -1,6 +1,3 @@
-import type { Dayjs } from 'dayjs'
-import type { ListProducts } from '~/domain/usecases'
-
 export interface PageProps {}
 
 export enum States {
@@ -20,14 +17,19 @@ export type DayEvent = {
 }
 
 export interface DashboardContainerProps {
-  stockState?: States
-  stock?: ListProducts.Response
-  setSelectedDate: (date: Dayjs | null) => void
-  selectedDate: Dayjs | null
   navigateToDetail: (id: string) => void
-  daysByMonth: {
-    saturday: Array<DayEvent>
-    sunday: Array<DayEvent>
-    wednesday: Array<DayEvent>
+  date: {
+    year: string | undefined
+    month: string | undefined
+    day: string | undefined
   }
+  scale: Array<
+    {
+      updatedAt?: string
+      updatedBy?: string
+      departament: string
+      label: string
+      // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    } & any
+  >
 }

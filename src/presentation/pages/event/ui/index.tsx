@@ -3,9 +3,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Chip,
   Container,
-  Divider,
   Grid,
   Tab,
   Tabs,
@@ -23,11 +21,11 @@ const styles = {
   slide: {
     background: '#f7f7f7',
     paddingBottom: 40,
+    height: '100%',
   },
 }
 
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
-  departament,
   daysByMonth,
   selectedDate,
   setSelectedDate,
@@ -49,24 +47,17 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
         <BodyTitle
           number={1}
-          title="Gerencie sua escala"
-          description="Caso seu departamento tenha várias responsabilidades, teremos mais uma opcao para a escolha"
+          title="Escala geral"
+          msg="Olá, acompanhe todas as escalas por aqui."
         />
 
-        <Box bgcolor="#f7f7f7" borderRadius={2} p={2} mb={2}>
+        {/* <Box bgcolor="#f7f7f7" borderRadius={2} p={2} mb={2}>
           <Typography variant="h6">Selecione o mês e dia</Typography>
 
           <Typography variant="body2" my={0.5}>
             Os dias estao separados em sábados, domingos e quartas.
           </Typography>
-
-          <Divider sx={{ my: 2 }}></Divider>
-
-          <Typography variant="h6">Resumo</Typography>
-          <Typography variant="body1" my={0.5}>
-            {departament?.label} / {departament?.departament}
-          </Typography>
-        </Box>
+        </Box> */}
       </Container>
 
       <Container fixed>
@@ -142,7 +133,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                               {day.currentDate}/{month}
                             </Typography>
 
-                            <Chip
+                            {/* <Chip
                               label={
                                 day.event1 || day.es ? 'completo' : 'pendente'
                               }
@@ -154,7 +145,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                                 color: 'white',
                               }}
                               color={day.event1 || day.es ? 'success' : 'error'}
-                            />
+                            /> */}
 
                             {day.updatedAt && (
                               <Typography variant="caption" component="div">
@@ -223,7 +214,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                           {day.currentDate}/{month}
                         </Typography>
 
-                        <Chip
+                        {/* <Chip
                           label={day.event1 || day.es ? 'completo' : 'pendente'}
                           size="small"
                           sx={{
@@ -233,7 +224,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             color: 'white',
                           }}
                           color={day.event1 || day.es ? 'success' : 'error'}
-                        />
+                        /> */}
 
                         {day.updatedAt && (
                           <Typography variant="caption" component="div">
@@ -289,7 +280,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                     </Typography>
                   </Box> */}
 
-                        <Chip
+                        {/* <Chip
                           label={day.event1 || day.es ? 'completo' : 'pendente'}
                           size="small"
                           sx={{
@@ -299,7 +290,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             color: 'white',
                           }}
                           color={day.event1 || day.es ? 'success' : 'error'}
-                        />
+                        /> */}
 
                         {day.updatedAt && (
                           <Typography variant="caption" component="div">
