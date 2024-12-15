@@ -144,7 +144,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
                             <Chip
                               label={
-                                day.event1 || day.es ? 'completo' : 'pendente'
+                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-ignore
+                                day['Responsável'] ? 'completo' : 'pendente'
                               }
                               size="small"
                               sx={{
@@ -153,7 +155,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                                 mb: 1,
                                 color: 'white',
                               }}
-                              color={day.event1 || day.es ? 'success' : 'error'}
+                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                              // @ts-ignore
+                              color={day['Responsável'] ? 'success' : 'error'}
                             />
 
                             {day.updatedAt && (
@@ -163,23 +167,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                               </Typography>
                             )}
                           </div>
-
-                          {/* <div>
-                            <Box py={1}>
-                              <Typography variant="body1" color="grey">
-                                Responsável:
-                              </Typography>
-                              <Typography variant="body1" color="grey">
-                                1 - {day.event1}
-                              </Typography>
-                              <Typography variant="body1" color="grey">
-                                ES - {day.es}
-                              </Typography>
-                              <Typography variant="body1" color="grey">
-                                2 - {day.event2}
-                              </Typography>
-                            </Box>
-                          </div> */}
                         </Box>
                       </CardContent>
                     </Card>
@@ -224,7 +211,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                         </Typography>
 
                         <Chip
-                          label={day.event1 || day.es ? 'completo' : 'pendente'}
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
+                          label={day['Responsável'] ? 'completo' : 'pendente'}
                           size="small"
                           sx={{
                             fontSize: 11,
@@ -232,7 +221,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             mb: 1,
                             color: 'white',
                           }}
-                          color={day.event1 || day.es ? 'success' : 'error'}
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
+                          color={day['Responsável'] ? 'success' : 'error'}
                         />
 
                         {day.updatedAt && (
@@ -283,14 +274,10 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                           {day.currentDate}/{month}
                         </Typography>
 
-                        {/* <Box py={1}>
-                    <Typography variant="body1" color="grey">
-                      Culto: Matheus
-                    </Typography>
-                  </Box> */}
-
                         <Chip
-                          label={day.event1 || day.es ? 'completo' : 'pendente'}
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
+                          label={day['Responsável'] ? 'completo' : 'pendente'}
                           size="small"
                           sx={{
                             fontSize: 11,
@@ -298,7 +285,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             mb: 1,
                             color: 'white',
                           }}
-                          color={day.event1 || day.es ? 'success' : 'error'}
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
+                          color={day['Responsável'] ? 'success' : 'error'}
                         />
 
                         {day.updatedAt && (

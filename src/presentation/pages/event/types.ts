@@ -17,6 +17,7 @@ export type DayEvent = {
   event1?: string
   event2?: string
   es?: string
+  items?: Array<string>
 }
 
 export interface DashboardContainerProps {

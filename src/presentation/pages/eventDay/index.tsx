@@ -21,24 +21,32 @@ export const Component: React.FC<PageProps> = () => {
     colection: 'departaments',
   })
 
-  let scale: Array<{
+  const scale: Array<{
     updatedAt?: string
     updatedBy?: string
     departament: string
     label: string
-  }> = []
+  }> = useMemo(() => {
+    let newscale: Array<{
+      updatedAt?: string
+      updatedBy?: string
+      departament: string
+      label: string
+    }> = []
+    departaments?.forEach((item) => {
+      if (item.scale && item.scale[`${date.day}/${date.month}/${date.year}`]) {
+        const element = {
+          departament: item.departament,
+          label: item.label,
+          ...item.scale[`${date.day}/${date.month}/${date.year}`],
+        }
 
-  departaments?.forEach((item) => {
-    if (item.scale && item.scale[`${date.day}/${date.month}/${date.year}`]) {
-      const element = {
-        departament: item.departament,
-        label: item.label,
-        ...item.scale[`${date.day}/${date.month}/${date.year}`],
+        newscale = [...newscale, element]
       }
+    })
 
-      scale = [...scale, element]
-    }
-  })
+    return newscale
+  }, [date.day, date.month, date.year, departaments])
 
   const handleNavigateToDetail = useCallback(
     (id: string) => {

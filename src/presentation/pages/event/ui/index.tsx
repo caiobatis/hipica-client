@@ -5,6 +5,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  Chip,
   Container,
   Grid,
   Tab,
@@ -111,58 +112,84 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                 <Grid xs={1} item key={day.currentDate}>
                   <CardActionArea
                     onClick={() =>
+                      day.items?.length &&
                       navigateToDetail(`${year}&${month}&${day.currentDate}`)
                     }
+                    sx={{
+                      backgroundColor: day.items?.length
+                        ? '#fff'
+                        : 'transparent',
+                    }}
                   >
                     <Card variant="outlined">
                       <CardContent>
-                        <Box display="flex">
-                          <div>
-                            <Typography
-                              variant="overline"
-                              fontWeight={600}
-                              component="div"
-                              color="grey"
-                            >
-                              Sábado
-                            </Typography>
+                        <Box width={'100%'}>
+                          <Typography
+                            variant="overline"
+                            fontWeight={600}
+                            component="div"
+                            color="grey"
+                          >
+                            Sábado
+                          </Typography>
 
-                            <Typography
-                              variant="h2"
-                              component="div"
-                              color="textPrimary"
-                            >
-                              {day.currentDate}/{month}
-                            </Typography>
+                          <Typography
+                            variant="h2"
+                            component="div"
+                            color="textPrimary"
+                          >
+                            {day.currentDate}/{month}
+                          </Typography>
 
-                            <AvatarGroup>
-                              <Avatar
-                                alt="Remy Sharp"
-                                sx={{ width: 32, height: 32 }}
-                              />
-                              <Avatar
-                                alt="Travis Howard"
-                                sx={{ width: 32, height: 32 }}
-                              />
-                              <Avatar
-                                alt="Travis Howard"
-                                sx={{ width: 32, height: 32 }}
-                              />
-                              <Avatar
-                                alt="Travis Howard"
-                                sx={{ width: 32, height: 32 }}
-                              >
-                                <span>+2</span>
-                              </Avatar>
+                          {day.items?.length ? (
+                            <AvatarGroup
+                              sx={{
+                                width: '100%',
+                                height: 24,
+                                margin: '5px 0',
+                                justifyContent: 'flex-end',
+                              }}
+                            >
+                              {day.items?.length &&
+                                day.items
+                                  .map((item) => (
+                                    <Avatar
+                                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                      // @ts-ignore
+                                      alt={item['Responsável']}
+                                      sx={{ width: 24, height: 24 }}
+                                    />
+                                  ))
+                                  .slice(0, 2)}
+
+                              {day.items.length > 2 && (
+                                <Avatar alt="" sx={{ width: 24, height: 24 }}>
+                                  <Typography variant="caption">
+                                    +{day.items.length - 2}
+                                  </Typography>
+                                </Avatar>
+                              )}
                             </AvatarGroup>
+                          ) : (
+                            <Chip
+                              label={'Sem escala'}
+                              size="small"
+                              color={'warning'}
+                              sx={{
+                                height: 21,
+                                margin: '7px 0',
+                                fontSize: 12,
+                                color: 'white',
+                              }}
+                            />
+                          )}
 
-                            {day.updatedAt && (
-                              <Typography variant="caption" component="div">
-                                atualizado em{' '}
-                                {dayjs(day.updatedAt).format('DD/MM/YYYY')}
-                              </Typography>
-                            )}
-                          </div>
+                          {day.updatedAt && (
+                            <Typography variant="caption" component="div">
+                              atualizado em{' '}
+                              {dayjs(day.updatedAt).format('DD/MM/YYYY')}
+                            </Typography>
+                          )}
                         </Box>
                       </CardContent>
                     </Card>
@@ -189,41 +216,71 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                   >
                     <Card variant="outlined">
                       <CardContent>
-                        <Typography
-                          variant="overline"
-                          fontWeight={600}
-                          component="div"
-                          color="grey"
-                        >
-                          Domingo
-                        </Typography>
-
-                        <Typography
-                          variant="h2"
-                          component="div"
-                          color="textPrimary"
-                        >
-                          {day.currentDate}/{month}
-                        </Typography>
-
-                        {/* <Chip
-                          label={day.event1 || day.es ? 'completo' : 'pendente'}
-                          size="small"
-                          sx={{
-                            fontSize: 11,
-                            height: 20,
-                            mb: 1,
-                            color: 'white',
-                          }}
-                          color={day.event1 || day.es ? 'success' : 'error'}
-                        /> */}
-
-                        {day.updatedAt && (
-                          <Typography variant="caption" component="div">
-                            atualizado em{' '}
-                            {dayjs(day.updatedAt).format('DD/MM/YYYY')}
+                        <Box width={'100%'}>
+                          <Typography
+                            variant="overline"
+                            fontWeight={600}
+                            component="div"
+                            color="grey"
+                          >
+                            Domingo
                           </Typography>
-                        )}
+
+                          <Typography
+                            variant="h2"
+                            component="div"
+                            color="textPrimary"
+                          >
+                            {day.currentDate}/{month}
+                          </Typography>
+
+                          {day.items?.length ? (
+                            <AvatarGroup
+                              max={2}
+                              sx={{
+                                width: '100%',
+                                height: 24,
+                                margin: '5px 0',
+                                justifyContent: 'flex-end',
+                              }}
+                            >
+                              {day.items?.length &&
+                                day.items.map((item) => (
+                                  <Avatar
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore
+                                    alt={item['Responsável']}
+                                    sx={{ width: 24, height: 24 }}
+                                  />
+                                ))}
+
+                              {day.items.length > 2 && (
+                                <Avatar alt="" sx={{ width: 24, height: 24 }}>
+                                  <span>+{day.items.length - 2}</span>
+                                </Avatar>
+                              )}
+                            </AvatarGroup>
+                          ) : (
+                            <Chip
+                              label={'Sem escala'}
+                              size="small"
+                              color={'warning'}
+                              sx={{
+                                height: 21,
+                                margin: '7px 0',
+                                fontSize: 12,
+                                color: 'white',
+                              }}
+                            />
+                          )}
+
+                          {day.updatedAt && (
+                            <Typography variant="caption" component="div">
+                              atualizado em{' '}
+                              {dayjs(day.updatedAt).format('DD/MM/YYYY')}
+                            </Typography>
+                          )}
+                        </Box>
                       </CardContent>
                     </Card>
                   </CardActionArea>
@@ -249,47 +306,71 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                   >
                     <Card variant="outlined">
                       <CardContent>
-                        <Typography
-                          variant="overline"
-                          fontWeight={600}
-                          component="div"
-                          color="grey"
-                        >
-                          Quarta
-                        </Typography>
-
-                        <Typography
-                          variant="h2"
-                          component="div"
-                          color="textPrimary"
-                        >
-                          {day.currentDate}/{month}
-                        </Typography>
-
-                        {/* <Box py={1}>
-                    <Typography variant="body1" color="grey">
-                      Culto: Matheus
-                    </Typography>
-                  </Box> */}
-
-                        {/* <Chip
-                          label={day.event1 || day.es ? 'completo' : 'pendente'}
-                          size="small"
-                          sx={{
-                            fontSize: 11,
-                            height: 20,
-                            mb: 1,
-                            color: 'white',
-                          }}
-                          color={day.event1 || day.es ? 'success' : 'error'}
-                        /> */}
-
-                        {day.updatedAt && (
-                          <Typography variant="caption" component="div">
-                            atualizado em{' '}
-                            {dayjs(day.updatedAt).format('DD/MM/YYYY')}
+                        <Box width={'100%'}>
+                          <Typography
+                            variant="overline"
+                            fontWeight={600}
+                            component="div"
+                            color="grey"
+                          >
+                            Quarta
                           </Typography>
-                        )}
+
+                          <Typography
+                            variant="h2"
+                            component="div"
+                            color="textPrimary"
+                          >
+                            {day.currentDate}/{month}
+                          </Typography>
+
+                          {day.items?.length ? (
+                            <AvatarGroup
+                              max={2}
+                              sx={{
+                                width: '100%',
+                                height: 24,
+                                margin: '5px 0',
+                                justifyContent: 'flex-end',
+                              }}
+                            >
+                              {day.items?.length &&
+                                day.items.map((item) => (
+                                  <Avatar
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore
+                                    alt={item['Responsável']}
+                                    sx={{ width: 24, height: 24 }}
+                                  />
+                                ))}
+
+                              {day.items.length > 2 && (
+                                <Avatar alt="" sx={{ width: 24, height: 24 }}>
+                                  <span>+{day.items.length - 2}</span>
+                                </Avatar>
+                              )}
+                            </AvatarGroup>
+                          ) : (
+                            <Chip
+                              label={'Sem escala'}
+                              size="small"
+                              color={'warning'}
+                              sx={{
+                                height: 21,
+                                margin: '7px 0',
+                                fontSize: 12,
+                                color: 'white',
+                              }}
+                            />
+                          )}
+
+                          {day.updatedAt && (
+                            <Typography variant="caption" component="div">
+                              atualizado em{' '}
+                              {dayjs(day.updatedAt).format('DD/MM/YYYY')}
+                            </Typography>
+                          )}
+                        </Box>
                       </CardContent>
                     </Card>
                   </CardActionArea>
