@@ -1,6 +1,7 @@
+import { Backdrop, CircularProgress } from '@mui/material'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useCallback, useMemo, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useListProducts } from '~/infra/hooks'
 import { getDaysByMonthAndYear } from '~/infra/utils/days'
 import type { PageProps } from './types'
@@ -30,46 +31,9 @@ export const Component: React.FC<PageProps> = () => {
     [navigate],
   )
 
-  const parameters = useParams()
-
-  const date = useMemo(() => {
-    return {
-      year: parameters?.id?.split('&')[0],
-      month: parameters?.id?.split('&')[1],
-      day: parameters?.id?.split('&')[2],
-    }
-  }, [parameters])
-
   const { data: departaments, isLoading } = useListProducts({
     colection: 'departaments',
   })
-
-  const scale: Array<{
-    updatedAt?: string
-    updatedBy?: string
-    departament: string
-    label: string
-  }> = useMemo(() => {
-    let newscale: Array<{
-      updatedAt?: string
-      updatedBy?: string
-      departament: string
-      label: string
-    }> = []
-    departaments?.forEach((item) => {
-      if (item.scale && item.scale[`${date.day}/${date.month}/${date.year}`]) {
-        const element = {
-          departament: item.departament,
-          label: item.label,
-          ...item.scale[`${date.day}/${date.month}/${date.year}`],
-        }
-
-        newscale = [...newscale, element]
-      }
-    })
-
-    return newscale
-  }, [date.day, date.month, date.year, departaments])
 
   const daysByMonth = useMemo(() => {
     const days = getDaysByMonthAndYear(
@@ -170,6 +134,12 @@ export const Component: React.FC<PageProps> = () => {
     return monthScale
   }, [currentDate, departaments, selectedDate])
 
+  const [open, setOpen] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   return (
     <>
       <DashboardContainer
@@ -178,6 +148,14 @@ export const Component: React.FC<PageProps> = () => {
         daysByMonth={daysByMonth}
         navigateToDetail={handleNavigateToDetail}
       />
+
+      <Backdrop
+        sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+        open={open || isLoading}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   )
 }
