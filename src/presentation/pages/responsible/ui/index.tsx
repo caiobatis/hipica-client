@@ -54,21 +54,23 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
       <Container fixed>
         <Grid container columns={{ xs: 1, sm: 2, md: 3 }} spacing={2} my={2}>
           {departament?.fields?.map((item) => (
-            <Grid xs={1} item key={item}>
+            <Grid xs={1} item key={item.id}>
               <Typography
                 variant="overline"
                 fontWeight={500}
                 color="textSecondary"
               >
-                {item}
+                {item.value}
               </Typography>
               <Box mt={1} sx={{ '& .MuiTextField-root': { minWidth: '100%' } }}>
                 <TextField
-                  label={item}
-                  value={form[item]}
-                  placeholder="Fulano"
+                  label={item.value}
+                  value={form[item.id]}
+                  placeholder="Escreva o nome do responsável"
                   id="outlined-required"
-                  onChange={(event) => setForm(item, event.target.value)}
+                  onChange={(event) =>
+                    setForm(item.id.toString(), event.target.value)
+                  }
                   autoComplete="off"
                 />
               </Box>

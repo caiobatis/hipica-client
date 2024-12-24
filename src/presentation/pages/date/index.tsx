@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDepartament } from '~/infra/hooks'
 import { getDaysByMonthAndYear } from '~/infra/utils/days'
-import type { PageProps } from './types'
+import type { DashboardContainerProps, PageProps } from './types'
 import { DashboardContainer } from './ui'
 
 export const Component: React.FC<PageProps> = () => {
@@ -87,7 +87,7 @@ export const Component: React.FC<PageProps> = () => {
     })
 
     return monthScale
-  }, [selectedDate, departament])
+  }, [selectedDate, departament]) as DashboardContainerProps['daysByMonth']
 
   const [open, setOpen] = useState(false)
 

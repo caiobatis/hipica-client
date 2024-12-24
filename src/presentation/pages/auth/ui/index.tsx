@@ -29,6 +29,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           autoComplete="off"
           error={!!error}
           helperText={error}
+          sx={{
+            backgroundColor: 'white',
+          }}
         />
       </Box>
 

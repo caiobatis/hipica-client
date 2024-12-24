@@ -1,6 +1,4 @@
 import {
-  Avatar,
-  AvatarGroup,
   Box,
   Card,
   CardActionArea,
@@ -141,48 +139,56 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             {day.currentDate}/{month}
                           </Typography>
 
-                          {day.items?.length ? (
-                            <AvatarGroup
-                              sx={{
-                                width: '100%',
-                                height: 24,
-                                margin: '5px 0',
-                                justifyContent: 'flex-end',
-                              }}
-                            >
-                              {day.items?.length &&
-                                day.items
-                                  .map((item) => (
-                                    <Avatar
-                                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                      // @ts-ignore
-                                      alt={item['Responsável']}
-                                      sx={{ width: 24, height: 24 }}
-                                    />
-                                  ))
-                                  .slice(0, 2)}
-
-                              {day.items.length > 2 && (
-                                <Avatar alt="" sx={{ width: 24, height: 24 }}>
-                                  <Typography variant="caption">
-                                    +{day.items.length - 2}
-                                  </Typography>
-                                </Avatar>
-                              )}
-                            </AvatarGroup>
-                          ) : (
+                          <Box display={'flex'}>
                             <Chip
-                              label={'Sem escala'}
+                              label={
+                                day.items?.length
+                                  ? `${day.items?.length} na escala`
+                                  : 'Sem escala'
+                              }
                               size="small"
-                              color={'warning'}
+                              color={day.items?.length ? 'primary' : 'default'}
                               sx={{
                                 height: 21,
                                 margin: '7px 0',
                                 fontSize: 12,
-                                color: 'white',
                               }}
                             />
-                          )}
+
+                            {/* {!!day.items?.length && (
+                              <AvatarGroup
+                                sx={{
+                                  width: '100%',
+                                  height: 24,
+                                  margin: '5px 0',
+                                  justifyContent: 'flex-end',
+                                }}
+                              >
+                                {day.items?.length &&
+                                  day.items
+                                    .map((item) => (
+                                      <Avatar
+                                        key={item.label}
+                                        alt={item.label}
+                                        sx={{
+                                          width: 24,
+                                          height: 24,
+                                          bgcolor: 'green',
+                                        }}
+                                      />
+                                    ))
+                                    .slice(0, 2)}
+
+                                {day.items.length > 2 && (
+                                  <Avatar alt="" sx={{ width: 24, height: 24 }}>
+                                    <Typography variant="caption">
+                                      +{day.items.length - 2}
+                                    </Typography>
+                                  </Avatar>
+                                )}
+                              </AvatarGroup>
+                            )} */}
+                          </Box>
 
                           {day.updatedAt && (
                             <Typography variant="caption" component="div">
@@ -234,7 +240,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             {day.currentDate}/{month}
                           </Typography>
 
-                          {day.items?.length ? (
+                          {/* {day.items?.length ? (
                             <AvatarGroup
                               max={2}
                               sx={{
@@ -272,7 +278,21 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                                 color: 'white',
                               }}
                             />
-                          )}
+                          )} */}
+                          <Chip
+                            label={
+                              day.items?.length
+                                ? `${day.items?.length} na escala`
+                                : 'Sem escala'
+                            }
+                            size="small"
+                            color={day.items?.length ? 'primary' : 'default'}
+                            sx={{
+                              height: 21,
+                              margin: '7px 0',
+                              fontSize: 12,
+                            }}
+                          />
 
                           {day.updatedAt && (
                             <Typography variant="caption" component="div">
@@ -324,7 +344,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             {day.currentDate}/{month}
                           </Typography>
 
-                          {day.items?.length ? (
+                          {/* {day.items?.length ? (
                             <AvatarGroup
                               max={2}
                               sx={{
@@ -362,7 +382,21 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                                 color: 'white',
                               }}
                             />
-                          )}
+                          )} */}
+                          <Chip
+                            label={
+                              day.items?.length
+                                ? `${day.items?.length} na escala`
+                                : 'Sem escala'
+                            }
+                            size="small"
+                            color={day.items?.length ? 'primary' : 'default'}
+                            sx={{
+                              height: 21,
+                              margin: '7px 0',
+                              fontSize: 12,
+                            }}
+                          />
 
                           {day.updatedAt && (
                             <Typography variant="caption" component="div">

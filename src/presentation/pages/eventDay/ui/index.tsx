@@ -39,9 +39,11 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
               <Box bgcolor="#f7f7f7" borderRadius={2} p={2} mb={2}>
                 <Typography variant="h6">{item.label}</Typography>
 
-                {!!item['Responsável'] && (
-                  <Typography variant="body1">{item['Responsável']}</Typography>
-                )}
+                {Object.keys(item.fields).map((key) => (
+                  <Typography key={key} variant="body1">
+                    {item.fields[key]}
+                  </Typography>
+                ))}
 
                 {item.updatedAt && (
                   <Typography

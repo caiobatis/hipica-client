@@ -13,9 +13,15 @@ export interface DashboardContainerProps {
   stockState?: States
   departament: ProductDTO | undefined
   currentDate: string
-  scale?: {
-    [key: string]: string
-  }
+  scale?:
+    | {
+        updatedAt?: string
+        updatedBy?: string
+        fields: {
+          [key: string]: string
+        }
+      }
+    | undefined
   navigateToDetail: (id: string) => void
   updateScale: () => void
   setForm: (id: string, value: string) => void

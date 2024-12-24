@@ -1,33 +1,38 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ptBR } from '@mui/x-date-pickers/locales';
+import { ptBR as coreptBR } from '@mui/material/locale'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ptBR } from '@mui/x-date-pickers/locales'
+import 'dayjs/locale/pt-br'
 import {
   inputsCustomizations,
   navigationCustomizations,
   surfacesCustomizations,
-} from './custom';
-import { colorSchemes, shadows, shape, typography } from './themePrimitives';
+} from './custom'
+import { shadows, shape, typography } from './themePrimitives'
 interface AppThemeProps {
   children: React.ReactNode
 }
 
 export default function AppTheme({ children }: AppThemeProps) {
-  const theme = createTheme({
-    cssVariables: {
-      colorSchemeSelector: 'data-mui-color-scheme',
-      cssVarPrefix: 'template',
+  const theme = createTheme(
+    {
+      cssVariables: {
+        colorSchemeSelector: 'data-mui-color-scheme',
+        cssVarPrefix: 'template',
+      },
+      typography,
+      shadows,
+      shape,
+      components: {
+        ...inputsCustomizations,
+        // ...dataDisplayCustomizations,
+        // ...feedbackCustomizations,
+        ...navigationCustomizations,
+        ...surfacesCustomizations,
+      },
     },
-    colorSchemes,
-    typography,
-    shadows,
-    shape,
-    components: {
-      ...inputsCustomizations,
-      // ...dataDisplayCustomizations,
-      // ...feedbackCustomizations,
-      ...navigationCustomizations,
-      ...surfacesCustomizations,
-    },
-  }, ptBR)
+    ptBR,
+    coreptBR,
+  )
 
   return (
     <ThemeProvider theme={theme} disableTransitionOnChange>

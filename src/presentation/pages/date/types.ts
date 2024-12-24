@@ -15,9 +15,9 @@ export type DayEvent = {
   currentDate?: string
   updatedAt?: string
   updatedBy?: string
-  event1?: string
-  event2?: string
-  es?: string
+  fields: {
+    [key: string]: string
+  }
 }
 
 export interface DashboardContainerProps {

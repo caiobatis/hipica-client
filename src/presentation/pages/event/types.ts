@@ -17,7 +17,12 @@ export type DayEvent = {
   event1?: string
   event2?: string
   es?: string
-  items?: Array<string>
+  items?: Array<{
+    fields: {
+      [keyof: string]: string
+    }
+    label: string
+  }>
 }
 
 export interface DashboardContainerProps {

@@ -144,9 +144,10 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
                             <Chip
                               label={
-                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                // @ts-ignore
-                                day['Responsável'] ? 'completo' : 'pendente'
+                                day.fields &&
+                                  Object?.keys(day.fields)?.length > 0
+                                  ? 'completo'
+                                  : 'pendente'
                               }
                               size="small"
                               sx={{
@@ -155,9 +156,12 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                                 mb: 1,
                                 color: 'white',
                               }}
-                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                              // @ts-ignore
-                              color={day['Responsável'] ? 'success' : 'error'}
+                              color={
+                                day.fields &&
+                                  Object?.keys(day.fields)?.length > 0
+                                  ? 'success'
+                                  : 'error'
+                              }
                             />
 
                             {day.updatedAt && (
@@ -211,9 +215,11 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                         </Typography>
 
                         <Chip
-                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                          // @ts-ignore
-                          label={day['Responsável'] ? 'completo' : 'pendente'}
+                          label={
+                            day.fields && Object?.keys(day.fields)?.length > 0
+                              ? 'completo'
+                              : 'pendente'
+                          }
                           size="small"
                           sx={{
                             fontSize: 11,
@@ -221,9 +227,11 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             mb: 1,
                             color: 'white',
                           }}
-                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                          // @ts-ignore
-                          color={day['Responsável'] ? 'success' : 'error'}
+                          color={
+                            day.fields && Object?.keys(day.fields)?.length > 0
+                              ? 'success'
+                              : 'error'
+                          }
                         />
 
                         {day.updatedAt && (
@@ -275,9 +283,11 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                         </Typography>
 
                         <Chip
-                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                          // @ts-ignore
-                          label={day['Responsável'] ? 'completo' : 'pendente'}
+                          label={
+                            day.fields && Object?.keys(day.fields)?.length > 0
+                              ? 'completo'
+                              : 'pendente'
+                          }
                           size="small"
                           sx={{
                             fontSize: 11,
@@ -285,9 +295,11 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             mb: 1,
                             color: 'white',
                           }}
-                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                          // @ts-ignore
-                          color={day['Responsável'] ? 'success' : 'error'}
+                          color={
+                            day.fields && Object?.keys(day.fields)?.length > 0
+                              ? 'success'
+                              : 'error'
+                          }
                         />
 
                         {day.updatedAt && (

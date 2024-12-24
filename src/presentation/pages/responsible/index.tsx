@@ -60,9 +60,9 @@ export const Component: React.FC<PageProps> = () => {
           data: {
             ...departament?.scale,
             [`${date.day}/${date.month}/${date.year}`]: {
-              ...form,
               updatedAt: new Date().toString(),
               updatedBy: localStorage.getItem('email')?.toString(),
+              fields: form,
             },
           },
         },
@@ -99,7 +99,7 @@ export const Component: React.FC<PageProps> = () => {
 
   useEffect(() => {
     if (currentScale) {
-      setForm(currentScale)
+      setForm(currentScale.fields)
     }
   }, [departament, currentScale])
 

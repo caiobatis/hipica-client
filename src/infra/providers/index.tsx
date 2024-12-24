@@ -11,6 +11,8 @@ import { ToastProvider } from '~/infra/providers/toast'
 import { router } from '~/routes/router'
 import AppTheme from './theme'
 
+import 'dayjs/locale/pt-br'
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const queryClient = new QueryClient()
 
@@ -24,6 +26,7 @@ function Providers(): React.ReactElement {
             localeText={
               ptBR.components.MuiLocalizationProvider.defaultProps.localeText
             }
+            adapterLocale="pt-br"
           >
             <CssBaseline />
 
