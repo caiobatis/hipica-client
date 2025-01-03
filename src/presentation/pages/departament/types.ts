@@ -10,6 +10,8 @@ export enum States {
 }
 
 export interface DashboardContainerProps {
+  search: string
+  setSearch: (search: string) => void
   isLoading: boolean
   departaments?: Array<ProductDTO>
   navigateToDetail: (id: string) => void

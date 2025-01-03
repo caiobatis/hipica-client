@@ -5,7 +5,9 @@ import {
   Chip,
   CircularProgress,
   Container,
+  FormLabel,
   Grid,
+  TextField,
   Typography,
 } from '@mui/material'
 import { BodyTitle } from '~/presentation/components/BodyTitle'
@@ -16,6 +18,8 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   navigateToDetail,
   departaments,
   isLoading,
+  search,
+  setSearch,
 }) => {
   return (
     <>
@@ -32,9 +36,24 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           <Typography variant="h6">Selecione o departamento</Typography>
 
           <Typography variant="body2" mt={0.5}>
-            Caso seu departamento tenha várias responsabilidades, teremos mais
-            uma opção para a escolha.
+            Acesse seu departamento para gerenciar sua escala
           </Typography>
+        </Box>
+        <Box mb={4} display="flex" flexDirection="column">
+          <FormLabel>Procure pelo seu departamento</FormLabel>
+          <TextField
+            required
+            id="outlined-required"
+            label="Departamento"
+            placeholder="Departamento"
+            type="text"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            autoComplete="off"
+            sx={{
+              backgroundColor: 'white',
+            }}
+          />
         </Box>
       </Container>
 
