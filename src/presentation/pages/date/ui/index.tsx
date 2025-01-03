@@ -82,15 +82,10 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
               views={['month']}
               value={selectedDate}
               onChange={setSelectedDate}
-              // defaultValue={new dayjs}
               sx={{
                 width: '100%',
               }}
             />
-
-            {/* <IconButton sx={{ ml: 2 }} onClick={refetch}>
-            <RefreshIcon />
-          </IconButton> */}
           </Grid>
 
           <Tabs
@@ -139,7 +134,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                               component="div"
                               color="textPrimary"
                             >
-                              {day.currentDate}/{month}
+                              {dayjs(
+                                `${year}/${month}/${day.currentDate}`,
+                              ).format('DD/MM')}
                             </Typography>
 
                             <Chip
@@ -211,7 +208,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                           component="div"
                           color="textPrimary"
                         >
-                          {day.currentDate}/{month}
+                          {dayjs(`${year}/${month}/${day.currentDate}`).format(
+                            'DD/MM',
+                          )}
                         </Typography>
 
                         <Chip
@@ -233,7 +232,6 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                               : 'error'
                           }
                         />
-
                         {day.updatedAt && (
                           <Typography variant="caption" component="div">
                             atualizado em{' '}
@@ -279,7 +277,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                           component="div"
                           color="textPrimary"
                         >
-                          {day.currentDate}/{month}
+                          {dayjs(`${year}/${month}/${day.currentDate}`).format(
+                            'DD/MM',
+                          )}
                         </Typography>
 
                         <Chip

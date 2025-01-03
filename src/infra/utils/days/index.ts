@@ -3,8 +3,10 @@ function daysInMonth(month: number, year: number) {
 }
 
 export const getDaysByMonthAndYear = (year: number, month: number) => {
-  const d = new Date(year, month - 1)
+  const d = new Date(year, (month === 0 ? 1 : month) - 1, 1)
+
   const getTot = daysInMonth(d.getMonth(), d.getFullYear()) //Get total days in a month
+
   const saturday = [] //Declaring array for inserting Saturdays
   const sunday = [] //Declaring array for inserting Sundays
   const wednesday = [] //Declaring array for inserting Sundays

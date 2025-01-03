@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { initializeApp } from 'firebase/app'
 import {
