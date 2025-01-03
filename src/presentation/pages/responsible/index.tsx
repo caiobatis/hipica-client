@@ -1,4 +1,5 @@
 import { Backdrop, CircularProgress } from '@mui/material'
+import dayjs from 'dayjs'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Departament } from '~/domain/usecases'
@@ -25,6 +26,7 @@ export const Component: React.FC<PageProps> = () => {
   }, [parameters])
 
   const currentDate = `${date.day}/${date.month}/${date.year}`
+  const dateFull = dayjs(`${date.year}/${date.month}/${date.day}`)
 
   const [form, setForm] = useState({})
 
@@ -117,6 +119,7 @@ export const Component: React.FC<PageProps> = () => {
       <DashboardContainer
         form={form}
         currentDate={currentDate}
+        dateFull={dateFull}
         scale={currentScale}
         departament={departament}
         isLoading={updateDepartment.isLoading}

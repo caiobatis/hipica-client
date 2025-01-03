@@ -1,3 +1,4 @@
+import type dayjs from 'dayjs'
 import type { ProductDTO } from '~/infra/api/dtos'
 
 export interface PageProps {}
@@ -13,6 +14,7 @@ export interface DashboardContainerProps {
   stockState?: States
   departament: ProductDTO | undefined
   currentDate: string
+  dateFull: dayjs.Dayjs
   scale?:
     | {
         updatedAt?: string

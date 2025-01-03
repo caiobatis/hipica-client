@@ -7,7 +7,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import dayjs from 'dayjs'
 import { BodyTitle } from '~/presentation/components/BodyTitle'
 import { Headbar } from '~/presentation/components/Headbar'
 import type { DashboardContainerProps } from '../types'
@@ -16,7 +15,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   form,
   isLoading,
   departament,
-  currentDate,
+  dateFull,
   setForm,
   updateScale,
 }) => {
@@ -43,11 +42,11 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
           <Typography variant="h6">Resumo</Typography>
           <Typography variant="body1" my={0.5}>
-            {departament?.label} / {departament?.departament}
+            {departament?.label} / <b>{departament?.departament}</b>
           </Typography>
 
           <Typography variant="body1" my={0.5}>
-            {dayjs(currentDate).format('DD/MM/YYYY')}
+            {dateFull.format('DD/MM/YYYY')}
           </Typography>
         </Box>
       </Container>
