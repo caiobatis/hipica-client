@@ -20,8 +20,8 @@ export default defineConfig({
       },
 
       manifest: {
-        name: 'Gestão de Cultos',
-        short_name: 'Gestão',
+        name: 'Gestão de Cultos | Portal da Hípica',
+        short_name: 'Gestão de Cultos',
         description: 'Gestão de Cultos | Portal da Hípica',
         theme_color: '#463D60',
       },
