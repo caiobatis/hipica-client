@@ -3,7 +3,7 @@ function daysInMonth(month: number, year: number) {
 }
 
 export const getDaysByMonthAndYear = (year: number, month: number) => {
-  const d = new Date(year, (month === 0 ? 1 : month) - 1, 1)
+  const d = new Date(year, month)
 
   const getTot = daysInMonth(d.getMonth(), d.getFullYear()) //Get total days in a month
 

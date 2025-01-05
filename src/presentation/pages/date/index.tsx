@@ -62,10 +62,15 @@ export const Component: React.FC<PageProps> = () => {
     monthScale.sunday = days.sunday.map((day) => {
       const date = `${day}/${selectedDate!.month() + 1}/${selectedDate?.year()}`
 
+
       return {
         currentDate: day,
         ...departament?.scale?.[date],
       }
+    }).filter((item) => {
+      const date = `${selectedDate?.year()}/${selectedDate!.month() + 1}/${item.currentDate}`
+
+      return dayjs(date).month() === selectedDate!.month()
     })
 
     monthScale.wednesday = days.wednesday.map((day) => {
@@ -75,6 +80,10 @@ export const Component: React.FC<PageProps> = () => {
         currentDate: day,
         ...departament?.scale?.[date],
       }
+    }).filter((item) => {
+      const date = `${selectedDate?.year()}/${selectedDate!.month() + 1}/${item.currentDate}`
+
+      return dayjs(date).month() === selectedDate!.month()
     })
 
     monthScale.saturday = days.saturday?.map((day) => {
@@ -84,6 +93,10 @@ export const Component: React.FC<PageProps> = () => {
         currentDate: day,
         ...departament?.scale?.[date],
       }
+    }).filter((item) => {
+      const date = `${selectedDate?.year()}/${selectedDate!.month() + 1}/${item.currentDate}`
+
+      return dayjs(date).month() === selectedDate!.month()
     })
 
     return monthScale
