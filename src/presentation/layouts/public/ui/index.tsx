@@ -11,10 +11,7 @@ export const PublicContainer: React.FC = () => {
       <Container sx={{ px: 4, py: 4 }}>
         <Grid container justifyContent="center">
           <Grid item>
-            <Avatar
-              alt="IASD Portal da Hípica"
-              src="https://i.pinimg.com/originals/32/1b/5e/321b5e2dbf1869ad6d15bb3af1a76426.png"
-            />
+            <Avatar alt="IASD Portal da Hípica" src="/favicon.svg" />
           </Grid>
 
           <Grid item ml={1}>

@@ -42,6 +42,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           size="large"
           fullWidth
           onClick={setAuth}
+          sx={{ backgroundColor: '#625784', color: 'white' }}
         >
           Entrar
         </Button>

@@ -20,10 +20,10 @@ export default defineConfig({
       },
 
       manifest: {
-        name: 'hipica-client',
-        short_name: 'hipica-client',
-        description: 'hipica-client',
-        theme_color: '#355fa3',
+        name: 'Gestão de Cultos',
+        short_name: 'Gestão',
+        description: 'Gestão de Cultos | Portal da Hípica',
+        theme_color: '#463D60',
       },
 
       workbox: {

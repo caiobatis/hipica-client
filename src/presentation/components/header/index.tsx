@@ -84,7 +84,7 @@ export function Header({ email }: Props) {
 
   return (
     <>
-      <Box sx={{ py: 2, bgcolor: '#355fa3' }}>
+      <Box sx={{ py: 2, bgcolor: '#625784' }}>
         <Container fixed>
           <Grid container columns={{ xs: 4 }}>
             <Grid item display="flex" xs={3}>
