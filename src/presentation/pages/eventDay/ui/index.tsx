@@ -1,35 +1,97 @@
-import { Box, Container, Grid, Typography } from '@mui/material'
+import IosShareIcon from '@mui/icons-material/IosShare'
+import SyncIcon from '@mui/icons-material/Sync'
+import WhatsAppIcon from '@mui/icons-material/WhatsApp'
+import {
+  Box,
+  Container,
+  Fab,
+  Grid,
+  Grid2,
+  IconButton,
+  Typography,
+} from '@mui/material'
 import dayjs from 'dayjs'
-import { BodyTitle } from '~/presentation/components/BodyTitle'
 import { Headbar } from '~/presentation/components/Headbar'
 import type { DashboardContainerProps } from '../types'
 
 export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   scale,
   date,
+  refetch,
 }) => {
+  const dateText = dayjs(`${date.year}-${date.month}-${date.day}`).format(
+    'DD/MM/YYYY',
+  )
+
+  let message = `Olá pessoal, segue a escala do dia ${dateText}:%0A%0A`
+
+  scale.forEach((item) => {
+    message =
+      message +
+      `*${item.label}*: ${Object.values(item.fields).map((key) => [key])}%0A%0A`
+  })
+
   return (
     <>
+      {window.screen.width > 768 ? (
+        <Fab
+          sx={{
+            position: 'fixed',
+            bottom: 20,
+            right: 80,
+          }}
+          color="primary"
+          onClick={() => {
+            navigator.clipboard.writeText(message)
+          }}
+        >
+          <IosShareIcon />
+        </Fab>
+      ) : (
+        <Fab
+          sx={{
+            position: 'fixed',
+            bottom: 20,
+            right: 20,
+          }}
+          color="success"
+          href={`whatsapp://send?text=${message}`}
+          data-action="share/whatsapp/share"
+        >
+          <WhatsAppIcon />
+        </Fab>
+      )}
+
       <Container fixed>
         <Headbar />
 
-        <BodyTitle
-          number={1}
-          msg="Acompanhe toda a escala do dia"
-          title={`${date.day}/${date.month}/${date.year}`}
-        />
+        <Grid
+          xs={1}
+          alignItems="center"
+          display="flex"
+          justifyContent="space-between"
+          item
+          py={2}
+        >
+          <Grid2>
+            <Typography variant="body2">
+              Acompanhe toda a escala do dia
+            </Typography>
+            <Typography variant="h4" component="div">
+              {dateText}
+            </Typography>
+          </Grid2>
 
-        {/* <Box bgcolor="#f7f7f7" borderRadius={2} p={2} mb={2}>
-          <Typography variant="h6">Selecione o mês e dia</Typography>
-
-          <Typography variant="body2" my={0.5}>
-            Os dias estao separados em sábados, domingos e quartas.
-          </Typography>
-        </Box> */}
-
-        {/* <Typography variant="h3">
-          {date.day}/{date.month}/{date.year}
-        </Typography> */}
+          <Grid2>
+            <IconButton
+              color="info"
+              // sx={{ bgcolor: 'transparent !important', color: 'white' }}
+              onClick={refetch}
+            >
+              <SyncIcon />
+            </IconButton>
+          </Grid2>
+        </Grid>
       </Container>
 
       <Container fixed>

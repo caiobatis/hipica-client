@@ -17,7 +17,12 @@ export const Component: React.FC<PageProps> = () => {
     }
   }, [parameters])
 
-  const { data: departaments, isLoading } = useListProducts({
+  const {
+    data: departaments,
+    isLoading,
+    isRefetching,
+    refetch,
+  } = useListProducts({
     colection: 'departaments',
   })
 
@@ -67,11 +72,12 @@ export const Component: React.FC<PageProps> = () => {
         date={date}
         scale={scale}
         navigateToDetail={handleNavigateToDetail}
+        refetch={refetch}
       />
 
       <Backdrop
         sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
-        open={open || isLoading}
+        open={open || isLoading || isRefetching}
         onClick={handleClose}
       >
         <CircularProgress color="inherit" />

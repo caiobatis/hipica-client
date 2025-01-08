@@ -136,7 +136,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             component="div"
                             color="textPrimary"
                           >
-                            {day.currentDate}/{month}
+                            {dayjs(
+                              `${year}/${month}/${day.currentDate}`,
+                            ).format('DD/MM')}
                           </Typography>
 
                           <Box display={'flex'}>
@@ -237,7 +239,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             component="div"
                             color="textPrimary"
                           >
-                            {day.currentDate}/{month}
+                            {dayjs(
+                              `${year}/${month}/${day.currentDate}`,
+                            ).format('DD/MM')}
                           </Typography>
 
                           {/* {day.items?.length ? (
@@ -341,7 +345,9 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                             component="div"
                             color="textPrimary"
                           >
-                            {day.currentDate}/{month}
+                            {dayjs(
+                              `${year}/${month}/${day.currentDate}`,
+                            ).format('DD/MM')}
                           </Typography>
 
                           {/* {day.items?.length ? (

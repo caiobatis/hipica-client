@@ -57,7 +57,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
           <Typography variant="h6">Selecione o mês e dia</Typography>
 
           <Typography variant="body2" my={0.5}>
-            Os dias estao separados em sábados, domingos e quartas.
+            Os dias estão separados em sábados, domingos e quartas.
           </Typography>
 
           <Divider sx={{ my: 2 }}></Divider>

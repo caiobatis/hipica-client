@@ -32,4 +32,5 @@ export interface DashboardContainerProps {
       // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
     } & any
   >
+  refetch: (options: any) => unknown
 }

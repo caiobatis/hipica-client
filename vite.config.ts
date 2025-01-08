@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     VitePWA({
-      registerType: 'prompt',
+      registerType: 'autoUpdate',
       injectRegister: false,
 
       pwaAssets: {
