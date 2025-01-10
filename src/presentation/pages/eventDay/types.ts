@@ -29,6 +29,7 @@ export interface DashboardContainerProps {
       updatedBy?: string
       departament: string
       label: string
+      phone: string
       // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
     } & any
   >

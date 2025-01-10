@@ -1,6 +1,7 @@
 export interface ProductDTO {
   id: number
   label: string
+  phone: string
   departament: string
   director: string
   fields?: Array<{

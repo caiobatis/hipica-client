@@ -43,6 +43,7 @@ export const Component: React.FC<PageProps> = () => {
         const element = {
           departament: item.departament,
           label: item.label,
+          phone: item.phone,
           ...item.scale[`${date.day}/${date.month}/${date.year}`],
         }
 
