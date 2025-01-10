@@ -131,11 +131,16 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
                 <Grid2>
                   {!!item.phone && (
                     <IconButton
-                      sx={{ bgcolor: 'transparent !important', color: 'gray' }}
+                      sx={{
+                        bgcolor: 'transparent !important',
+                        color: 'gray',
+                        flexDirection: 'column',
+                      }}
                       href={`whatsapp://send?phone=${item.phone}`}
                       data-action="share/whatsapp/share"
                     >
                       <WhatsAppIcon />
+                      <Typography variant="caption">Diretor(a)</Typography>
                     </IconButton>
                   )}
                 </Grid2>
