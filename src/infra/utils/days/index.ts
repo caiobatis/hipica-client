@@ -5,7 +5,7 @@ function daysInMonth(month: number, year: number) {
 export const getDaysByMonthAndYear = (year: number, month: number) => {
   const d = new Date(year, month)
 
-  const getTot = daysInMonth(d.getMonth(), d.getFullYear()) //Get total days in a month
+  const getTot = daysInMonth(d.getMonth() + 1, d.getFullYear()) //Get total days in a month
 
   const saturday = [] //Declaring array for inserting Saturdays
   const sunday = [] //Declaring array for inserting Sundays

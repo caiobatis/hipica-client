@@ -30,7 +30,12 @@ export const Component: React.FC<PageProps> = () => {
 
   const [form, setForm] = useState({})
 
-  const { data: departament, isLoading } = useDepartament({
+  const {
+    data: departament,
+    isLoading,
+    refetch,
+    isRefetching,
+  } = useDepartament({
     colection: 'departaments',
     id: parameters?.dep,
   })
@@ -74,7 +79,11 @@ export const Component: React.FC<PageProps> = () => {
               Departament.keys.DEPARTAMENT,
               { id: parameters.dep },
             ])
+
+            refetch()
+
             handleClose()
+
             navigate(-1)
           },
           onError: () => {
@@ -88,6 +97,7 @@ export const Component: React.FC<PageProps> = () => {
     handleClose()
   }, [
     form,
+    refetch,
     updateDepartment,
     parameters.dep,
     departament?.scale,
@@ -130,7 +140,7 @@ export const Component: React.FC<PageProps> = () => {
 
       <Backdrop
         sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
-        open={open || isLoading}
+        open={open || isLoading || isRefetching}
         onClick={handleClose}
       >
         <CircularProgress color="inherit" />
