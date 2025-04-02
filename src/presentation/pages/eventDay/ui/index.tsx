@@ -28,7 +28,7 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
   scale.forEach((item) => {
     message =
       message +
-      `*${item.label}*: ${Object.values(item.fields).map((key) => [key])}%0A%0A`
+      `*${item.label}*: ${item.fields ? Object.values(item.fields).map((key) => [key]) : ''}%0A%0A`
   })
 
   return (
@@ -98,55 +98,58 @@ export const DashboardContainer: React.FC<DashboardContainerProps> = ({
 
       <Container fixed>
         <Grid container columns={{ xs: 1 }}>
-          {scale.map((item) => (
-            <Grid xs={1} item key={item.label}>
-              <Box
-                bgcolor="#f7f7f7"
-                borderRadius={2}
-                p={2}
-                mb={2}
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Grid2>
-                  <Typography variant="h6">{item.label}</Typography>
+          {scale
+            .filter((item) => item.fields)
+            .map((item) => (
+              <Grid xs={1} item key={item.label}>
+                <Box
+                  bgcolor="#f7f7f7"
+                  borderRadius={2}
+                  p={2}
+                  mb={2}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Grid2>
+                    <Typography variant="h6">{item.label}</Typography>
 
-                  {Object.keys(item.fields).map((key) => (
-                    <Typography key={key} variant="body1">
-                      {item.fields[key]}
-                    </Typography>
-                  ))}
+                    {Object.keys(item.fields).map((key) => (
+                      <Typography key={key} variant="body1">
+                        {item.fields[key]}
+                      </Typography>
+                    ))}
 
-                  {item.updatedAt && (
-                    <Typography
-                      variant="caption"
-                      component="div"
-                      color="textSecondary"
-                    >
-                      atualizado em {dayjs(item.updatedAt).format('DD/MM/YYYY')}
-                    </Typography>
-                  )}
-                </Grid2>
-                <Grid2>
-                  {!!item.phone && (
-                    <IconButton
-                      sx={{
-                        bgcolor: 'transparent !important',
-                        color: 'gray',
-                        flexDirection: 'column',
-                      }}
-                      href={`whatsapp://send?phone=${item.phone}`}
-                      data-action="share/whatsapp/share"
-                    >
-                      <WhatsAppIcon />
-                      <Typography variant="caption">Diretor(a)</Typography>
-                    </IconButton>
-                  )}
-                </Grid2>
-              </Box>
-            </Grid>
-          ))}
+                    {item.updatedAt && (
+                      <Typography
+                        variant="caption"
+                        component="div"
+                        color="textSecondary"
+                      >
+                        atualizado em{' '}
+                        {dayjs(item.updatedAt).format('DD/MM/YYYY')}
+                      </Typography>
+                    )}
+                  </Grid2>
+                  <Grid2>
+                    {!!item.phone && (
+                      <IconButton
+                        sx={{
+                          bgcolor: 'transparent !important',
+                          color: 'gray',
+                          flexDirection: 'column',
+                        }}
+                        href={`whatsapp://send?phone=${item.phone}`}
+                        data-action="share/whatsapp/share"
+                      >
+                        <WhatsAppIcon />
+                        <Typography variant="caption">Diretor(a)</Typography>
+                      </IconButton>
+                    )}
+                  </Grid2>
+                </Box>
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </>

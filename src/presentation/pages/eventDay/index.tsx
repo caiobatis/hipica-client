@@ -48,6 +48,13 @@ export const Component: React.FC<PageProps> = () => {
         }
 
         newscale = [...newscale, element]
+      } else {
+        const element = {
+          departament: item.departament,
+          label: item.label,
+          phone: item.phone,
+        }
+        newscale = [...newscale, element]
       }
     })
 
